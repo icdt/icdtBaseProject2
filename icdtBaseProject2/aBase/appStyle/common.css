@@ -1,0 +1,49 @@
+html, body{
+    background-color: rgb(235, 235, 235)
+}
+
+
+.sidebar-nav ul {
+    padding: 0;
+    list-style: none;
+}
+
+    .sidebar-nav ul ul li {
+        padding-left: 20px;
+        list-style: none;
+    }
+
+.sublist_toggle {
+    margin-left: 30px;
+}
+
+.anchor_pointer {
+    cursor: pointer;
+}
+
+.navbar-brand {
+    padding: 0px;
+}
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.menu_toggle {
+    float: left;
+}
+
+.block_inline {
+    display: inline-block;
+}
+
+.menu_active {
+    text-decoration: none;
+    color: rgb(255, 255, 255) !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.uiGrid {
+    width: 100%;
+}
+

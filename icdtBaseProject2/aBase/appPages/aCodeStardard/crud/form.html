@@ -1,0 +1,113 @@
+﻿<div class="row clearfix" style="background-color: white">
+    <div class="col-md-12 column">
+        <h3>
+            Form
+        </h3>
+        <p>
+            <h4>Html</h4>
+            <pre class="prettyprint">
+               
+                &lt;!-- Content Header (Page header) -->
+                &lt;section class="content-header">
+                            &lt;button type="submit" class="btn btn-default btn-flat" onclick="history.back()">&lt;span class="glyphicon glyphicon-chevron-left">&lt;/span>回查詢訂單頁&lt;/button>
+                            &lt;br />
+                            &lt;br />
+                            &lt;h1>
+                        公司基本資料
+                            &lt;small>&lt;/small>
+                    &lt;/h1>
+                            &lt;ol class="breadcrumb">
+                            &lt;li>&lt;a href="#">&lt;i class="fa fa-dashboard">&lt;/i> 公司&lt;/a>&lt;/li>
+                            &lt;li class="active">明細&lt;/li>
+                    &lt;/ol>
+                &lt;/section>
+                &lt;!-- Main content -->
+                &lt;section class="content">
+                &lt;!-- Your Page Content Here -->
+                            &lt;div class="row">
+                            &lt;div class="col-xs-12">
+                            &lt;div class="box box-success">
+                            &lt;div class="box-header">
+                            &lt;h3 class="box-title">&lt;/h3>
+                                &lt;/div>&lt;!-- /.box-header -->
+                            &lt;div class="box-body">
+                            &lt;form role="form" class="form-horizontal" style="margin: 0 auto;">
+                            &lt;div class="col-md-6 column">
+                            &lt;div class="form-group">
+                            &lt;label class="col-sm-4 control-label" for="id">&lt;/label>
+                            &lt;div class="col-sm-8">
+                            &lt;button type="submit" class="btn btn-success btn-flat" ng-click="vm.save()">儲存&lt;/button>
+                                                &lt;/div>
+                                            &lt;/div>
+                            &lt;div class="form-group">
+                            &lt;label class="col-sm-4 control-label" for="id">公司/單位名稱&lt;/label>
+                            &lt;div class="col-sm-8">
+                            &lt;input type="text" class="form-control" ng-model="vm.company.CompanyName" />
+                                                &lt;/div>
+                                            &lt;/div>
+                            &lt;div class="form-group">
+                            &lt;label class="col-sm-4 control-label" for="personname">別名&lt;/label>
+                            &lt;div class="col-sm-8">
+                            &lt;input type="text" class="form-control" ng-model="vm.company.Aliases" />
+                                                &lt;/div>
+                                            &lt;/div>
+                            &lt;div class="form-group">
+                            &lt;label class="col-sm-4 control-label" for="createDate">統一編號&lt;/label>
+                            &lt;div class="col-sm-8">
+                            &lt;input type="text" class="form-control" ng-model="vm.company.VATnumber" />
+                                                &lt;/div>
+                                            &lt;/div>
+                            &lt;div class="form-group">
+                            &lt;label class="col-sm-4 control-label" for="status">地址&lt;/label>
+                            &lt;div class="col-sm-8">
+                            &lt;input type="text" class="form-control" ng-model="vm.company.CompanyAddress" />
+                                                &lt;/div>
+                                            &lt;/div>
+                            &lt;div class="form-group">
+                            &lt;label class="col-sm-4 control-label" for="JobNo">電話&lt;/label>
+                            &lt;div class="col-sm-8">
+                            &lt;input type="text" class="form-control" ng-model="vm.company.CompanyTel1" />
+                                                &lt;/div>
+                                            &lt;/div>
+                            &lt;div class="form-group">
+                            &lt;label class="col-sm-4 control-label" for="receiveStartDate">傳真&lt;/label>
+                            &lt;div class="col-sm-8">
+                            &lt;input type="text" class="form-control" ng-model="vm.company.CompanyFax" />
+                                                &lt;/div>
+                                            &lt;/div>
+                                        &lt;/div>
+                                    &lt;/form>
+                                &lt;/div>&lt;!-- /.box-body -->
+                            &lt;/div>&lt;!-- /.box -->
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/section>&lt;!-- /.content -->
+            </pre>
+        </p>
+        <p>
+            <h4>Angular js</h4>
+            <pre class="prettyprint">
+                      
+                angular.module('app', []).controller('customerCompanyFormCtrl', ['$scope', '$state', '$rootScope', 'OrderFactory', function ($scope, $state, $rootScope, OrderFactory) {
+                    // 宣告vm
+                    $scope.vm = {};
+                    // 宣告變數, function, object
+                    $scope.vm.company = {};
+                    // 動作
+                    $scope.vm.save = function () {
+                        CustomerFactory.create($scope.vm.company).success(function (data) {
+                            $state.go('m.customerCompany.list');
+                        }).error(function (err) {
+                            console.log(err);
+                        });
+                    };
+                    // 使用者介面基本設定
+                }]);
+            </pre>
+        </p>
+    </div>
+</div>
+
+<script>
+    prettyPrint();
+</script>

@@ -1,0 +1,49 @@
+﻿<!--<div id="wrapper" class="toggled ">-->
+<div id="wrapper" style="margin-top:50px;">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a>
+                    icdt code base
+                </a>
+            </li>
+            <li>
+                <a ui-sref="main.codeStandard.crud.content" ui-sref-active="menu_active">CURD 撰寫規則</a>
+            </li>
+            <li>
+                <a ui-sref="main.codeStandard.aspnet" ui-sref-active="menu_active">ASP .NET 撰寫規則</a>
+            </li>
+            <li>
+                <a ui-sref="main.codeStandard.entityframework" ui-sref-active="menu_active">Entity Framework 撰寫規則</a>
+            </li>
+            <li>
+                <a ui-sref="main.codeStandard.angular" ui-sref-active="menu_active">Angular JS 撰寫規則</a>
+            </li>
+            <li>
+                <a ui-sref="main.checkListModel" ui-sref-active="menu_active">日期處理方式JS, Asp.net</a>
+            </li>
+            <li>
+                <a ui-sref="main.checkListModel" ui-sref-active="menu_active">Checklist-Model</a>
+            </li>
+            <li>
+                <a ui-sref="main.selection" ui-sref-active="menu_active">Selection</a>
+            </li>
+            <li>
+                <a ui-sref="main.datePicker" ui-sref-active="menu_active">Datepicker</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <!--function view-->
+        <div class="container" style="width:100%">
+            <div ui-view></div>
+        </div>
+
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->

@@ -1,0 +1,61 @@
+body{  
+    font-family: "微軟正黑體", "Microsoft JhengHei", "新細明體", "PMingLiU", "細明體", "MingLiU", "標楷體", "DFKai-sb", Comic Sans MS,arial,helvetica,sans-serif;
+    -webkit-transition: background-color 1000ms linear;
+    -moz-transition: background-color 1000ms linear;
+    -o-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
+}
+
+
+.sidebar-nav ul {
+    padding: 0;
+    list-style: none;
+}
+
+    .sidebar-nav ul ul li {
+        padding-left: 20px;
+        list-style: none;
+    }
+
+.sublist_toggle {
+    margin-left: 30px;
+}
+
+.anchor_pointer {
+    cursor: pointer;
+}
+
+.navbar-brand {
+    padding: 0px;
+}
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.menu_toggle {
+    float: left;
+}
+
+.block_inline {
+    display: inline-block;
+}
+
+.menu_active {
+    text-decoration: none;
+    color: rgb(255, 255, 255) !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.uiGrid {
+    width: 100%;
+}
+
+.form-group .help-block {
+  display: none;
+}
+ 
+.form-group.has-error .help-block {
+  display: block;
+}

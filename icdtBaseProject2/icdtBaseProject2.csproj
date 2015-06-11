@@ -40,15 +40,47 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin.Cors, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -119,15 +151,6 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Core">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Owin">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
@@ -163,9 +186,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="aInfrastructure\DbSeed.cs" />
+    <Compile Include="aInfrastructure\WebConstant.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -197,21 +221,165 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\authorization\AccountController.cs" />
+    <Compile Include="Controllers\authorization\UsersController.cs" />
+    <Compile Include="Controllers\business\BaseController.cs" />
+    <Compile Include="Controllers\business\OrdersController.cs" />
+    <Compile Include="Controllers\mvc\contentsController.cs" />
+    <Compile Include="Controllers\utils\filesController.cs" />
+    <Compile Include="Controllers\authorization\GroupsController.cs" />
+    <Compile Include="Controllers\mvc\filesController.cs" />
+    <Compile Include="Controllers\mvc\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountBindingModels.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="aInfrastructure\ApplicationDbContext.cs" />
+    <Compile Include="Identity\ApplicationGroup.cs" />
+    <Compile Include="Identity\ApplicationGroupManager.cs" />
+    <Compile Include="Identity\ApplicationGroupStore.cs" />
+    <Compile Include="Identity\ApplicationRole.cs" />
+    <Compile Include="Identity\ApplicationRoleManager.cs" />
+    <Compile Include="Identity\ApplicationRoleStore.cs" />
+    <Compile Include="Identity\ApplicationSignInManager.cs" />
+    <Compile Include="Identity\ApplicationUser.cs" />
+    <Compile Include="Identity\ApplicationUserClaim.cs" />
+    <Compile Include="Identity\ApplicationUserLogin.cs" />
+    <Compile Include="Identity\ApplicationUserManager.cs" />
+    <Compile Include="Identity\ApplicationUserRole.cs" />
+    <Compile Include="Identity\ApplicationUserStore.cs" />
+    <Compile Include="Identity\GroupStoreBase.cs" />
+    <Compile Include="Identity\IdentityExtension.cs" />
+    <Compile Include="Identity\RoleClaimAuthorize.cs" />
+    <Compile Include="Migrations\201506110824073_InitialMigration.cs" />
+    <Compile Include="Migrations\201506110824073_InitialMigration.Designer.cs">
+      <DependentUpon>201506110824073_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Account\AccountBindingModels.cs" />
+    <Compile Include="Models\Account\AccountViewModels.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="aApp\backend\app.js" />
+    <Content Include="aApp\backend\appUtils\file\fileUtils.js" />
+    <Content Include="aApp\backend\appData\permissions\PermissionsFactory.js" />
+    <Content Include="aApp\backend\appData\options\optionsFactory.js" />
+    <Content Include="aApp\backend\appData\order\icdtdataFactory.js" />
+    <Content Include="aApp\backend\appUtils\settings\settingFactory.js" />
+    <Content Include="aApp\backend\appLib\datepicker\datepicker-zh-TW.js" />
+    <Content Include="aApp\backend\appLib\ngToast\ngToast-animations.css" />
+    <Content Include="aApp\backend\appLib\ngToast\ngToast-animations.min.css" />
+    <Content Include="aApp\backend\appLib\ngToast\ngToast.css" />
+    <Content Include="aApp\backend\appLib\ngToast\ngToast.js" />
+    <Content Include="aApp\backend\appLib\ngToast\ngToast.min.css" />
+    <Content Include="aApp\backend\appLib\ngToast\ngToast.min.js" />
+    <Content Include="aApp\backend\appLib\ocLazyLoad\modules\ocLazyLoad.core.js" />
+    <Content Include="aApp\backend\appLib\ocLazyLoad\modules\ocLazyLoad.directive.js" />
+    <Content Include="aApp\backend\appLib\ocLazyLoad\modules\ocLazyLoad.loaders.common.js" />
+    <Content Include="aApp\backend\appLib\ocLazyLoad\modules\ocLazyLoad.loaders.core.js" />
+    <Content Include="aApp\backend\appLib\ocLazyLoad\modules\ocLazyLoad.loaders.cssLoader.js" />
+    <Content Include="aApp\backend\appLib\ocLazyLoad\modules\ocLazyLoad.loaders.jsLoader.js" />
+    <Content Include="aApp\backend\appLib\ocLazyLoad\modules\ocLazyLoad.loaders.requirejsLoader.js" />
+    <Content Include="aApp\backend\appLib\ocLazyLoad\modules\ocLazyLoad.loaders.templatesLoader.js" />
+    <Content Include="aApp\backend\appLib\ocLazyLoad\modules\ocLazyLoad.polyfill.ie8.js" />
+    <Content Include="aApp\backend\appLib\ocLazyLoad\ocLazyLoad.js" />
+    <Content Include="aApp\backend\appLib\ocLazyLoad\ocLazyLoad.min.js" />
+    <Content Include="aApp\backend\appLib\ocLazyLoad\ocLazyLoad.require.js" />
+    <Content Include="aApp\backend\appLib\ocLazyLoad\ocLazyLoad.require.min.js" />
+    <Content Include="aApp\backend\appLib\uiGrid\ui-grid.css" />
+    <Content Include="aApp\backend\appLib\uiGrid\ui-grid.js" />
+    <Content Include="aApp\backend\appPages\login\index.html" />
+    <Content Include="aApp\backend\appPages\login\loginCtrl.js" />
+    <Content Include="aApp\backend\appPages\mUser\create.js" />
+    <Content Include="aApp\backend\appPages\mUser\edit.js" />
+    <Content Include="aApp\backend\appPages\mUser\form.html" />
+    <Content Include="aApp\backend\appPages\mUser\list.html" />
+    <Content Include="aApp\backend\appPages\mUser\list.js" />
+    <Content Include="aApp\backend\appPages\mUser\state.js" />
+    <Content Include="aApp\backend\appPages\mPermissions\create.js" />
+    <Content Include="aApp\backend\appPages\mPermissions\edit.js" />
+    <Content Include="aApp\backend\appPages\mPermissions\form.html" />
+    <Content Include="aApp\backend\appPages\mPermissions\list.html" />
+    <Content Include="aApp\backend\appPages\mPermissions\list.js" />
+    <Content Include="aApp\backend\appPages\mPermissions\state.js" />
+    <Content Include="aApp\backend\appPages\mOrder\create.js" />
+    <Content Include="aApp\backend\appPages\mOrder\edit.js" />
+    <Content Include="aApp\backend\appPages\mOrder\form.html" />
+    <Content Include="aApp\backend\appPages\mOrder\list.html" />
+    <Content Include="aApp\backend\appPages\mOrder\list.js" />
+    <Content Include="aApp\backend\appPages\mOrder\state.js" />
+    <Content Include="aApp\backend\appPages\mCRUD\create.js" />
+    <Content Include="aApp\backend\appPages\mCRUD\form.html" />
+    <Content Include="aApp\backend\appPages\mCRUD\edit.js" />
+    <Content Include="aApp\backend\appPages\mCRUD\list.html" />
+    <Content Include="aApp\backend\appPages\mCRUD\list.js" />
+    <Content Include="aApp\backend\appPages\mCRUD\state.js" />
+    <Content Include="aApp\backend\appPages\m\main.html" />
+    <Content Include="aApp\backend\appPages\m\state.js" />
+    <Content Include="aApp\backend\appStyle\common.css" />
+    <Content Include="aApp\backend\appStyle\reset.css" />
+    <Content Include="aApp\backend\appUtils\UserService.js" />
+    <Content Include="aApp\backend\appUtils\UrlService.js" />
+    <Content Include="aApp\backend\index.html" />
+    <Content Include="aBase\app.js" />
+    <Content Include="aBase\appPages\aCodeStardard\angular.html" />
+    <Content Include="aBase\appPages\aCodeStardard\aspnet.html" />
+    <Content Include="aBase\appPages\aCodeStardard\crud\api.html" />
+    <Content Include="aBase\appPages\aCodeStardard\crud\form.html" />
+    <Content Include="aBase\appPages\aCodeStardard\crud\layout.html" />
+    <Content Include="aBase\appPages\aCodeStardard\crud\list.html" />
+    <Content Include="aBase\appPages\aCodeStardard\crud\list.js" />
+    <Content Include="aBase\appPages\aCodeStardard\entityframework.html" />
+    <Content Include="aBase\appPages\aMain\welcome.html" />
+    <Content Include="aBase\appPages\bForm\checkbox\index.html" />
+    <Content Include="aBase\appPages\bForm\selection\index.html" />
+    <Content Include="aBase\appPages\bForm\checkbox\index.js" />
+    <Content Include="aBase\appStyle\common.css" />
+    <Content Include="aCollection\css\reset.css" />
+    <Content Include="aBase\index.html" />
+    <Content Include="aCollection\lib\checkListModel\checklist-model.js" />
+    <Content Include="aCollection\lib\simpleSideBar\simple-sidebar.css" />
+    <Content Include="aCollection\lib\uiGrid\ui-grid.css" />
+    <Content Include="aCollection\lib\uiGrid\ui-grid.js" />
+    <Content Include="aBase\appPages\aMain\main.html" />
+    <Content Include="aBase\appPages\aMain\mainCtrl.js" />
+    <Content Include="aBase\userService.js" />
+    <Content Include="aCollection\lib\prettify\lang-apollo.js" />
+    <Content Include="aCollection\lib\prettify\lang-basic.js" />
+    <Content Include="aCollection\lib\prettify\lang-clj.js" />
+    <Content Include="aCollection\lib\prettify\lang-css.js" />
+    <Content Include="aCollection\lib\prettify\lang-dart.js" />
+    <Content Include="aCollection\lib\prettify\lang-erlang.js" />
+    <Content Include="aCollection\lib\prettify\lang-go.js" />
+    <Content Include="aCollection\lib\prettify\lang-hs.js" />
+    <Content Include="aCollection\lib\prettify\lang-lisp.js" />
+    <Content Include="aCollection\lib\prettify\lang-llvm.js" />
+    <Content Include="aCollection\lib\prettify\lang-lua.js" />
+    <Content Include="aCollection\lib\prettify\lang-matlab.js" />
+    <Content Include="aCollection\lib\prettify\lang-ml.js" />
+    <Content Include="aCollection\lib\prettify\lang-mumps.js" />
+    <Content Include="aCollection\lib\prettify\lang-n.js" />
+    <Content Include="aCollection\lib\prettify\lang-pascal.js" />
+    <Content Include="aCollection\lib\prettify\lang-proto.js" />
+    <Content Include="aCollection\lib\prettify\lang-r.js" />
+    <Content Include="aCollection\lib\prettify\lang-rd.js" />
+    <Content Include="aCollection\lib\prettify\lang-scala.js" />
+    <Content Include="aCollection\lib\prettify\lang-sql.js" />
+    <Content Include="aCollection\lib\prettify\lang-tcl.js" />
+    <Content Include="aCollection\lib\prettify\lang-tex.js" />
+    <Content Include="aCollection\lib\prettify\lang-vb.js" />
+    <Content Include="aCollection\lib\prettify\lang-vhdl.js" />
+    <Content Include="aCollection\lib\prettify\lang-wiki.js" />
+    <Content Include="aCollection\lib\prettify\lang-xq.js" />
+    <Content Include="aCollection\lib\prettify\lang-yaml.js" />
+    <Content Include="aCollection\lib\prettify\prettify.css" />
+    <Content Include="aCollection\lib\prettify\prettify.js" />
+    <Content Include="aCollection\lib\prettify\run_prettify.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -239,10 +407,20 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="aCollection\lib\uiGrid\ui-grid.eot" />
+    <Content Include="aCollection\lib\uiGrid\ui-grid.woff" />
+    <Content Include="aApp\backend\appLib\ocLazyLoad\ocLazyLoad.js.map" />
+    <Content Include="aApp\backend\appLib\ocLazyLoad\ocLazyLoad.min.js.map" />
+    <Content Include="aApp\backend\appLib\ocLazyLoad\ocLazyLoad.require.js.map" />
+    <Content Include="aApp\backend\appLib\ocLazyLoad\ocLazyLoad.require.min.js.map" />
+    <Content Include="aApp\backend\appLib\uiGrid\ui-grid.eot" />
+    <Content Include="aApp\backend\appLib\uiGrid\ui-grid.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -250,7 +428,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -262,13 +442,30 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="aApp\backend\bootstrap\" />
+    <Folder Include="aApp\backend\build\" />
+    <Folder Include="aApp\backend\dist\" />
+    <Folder Include="aApp\backend\documentation\" />
+    <Folder Include="aApp\backend\pages\" />
+    <Folder Include="aApp\backend\plugins\" />
+    <Folder Include="aApp\desktop\" />
+    <Folder Include="aApp\mobile\" />
+    <Folder Include="aBase\appData\" />
+    <Folder Include="aBase\appImg\" />
+    <Folder Include="aBase\appPages\bForm\calendar\" />
+    <Folder Include="aBase\appPages\bForm\datePicker\" />
+    <Folder Include="aBase\appPages\bForm\radioButton\" />
+    <Folder Include="aBase\appPages\cUIGRID\" />
+    <Folder Include="aBase\appPages\dSignalr\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Views\contents\" />
+    <Folder Include="Views\files\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -276,6 +473,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201506110824073_InitialMigration.resx">
+      <DependentUpon>201506110824073_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

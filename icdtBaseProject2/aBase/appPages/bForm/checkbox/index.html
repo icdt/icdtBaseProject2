@@ -1,0 +1,100 @@
+﻿
+
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <h2>
+            checklist-model
+        </h2>
+        <p>
+            注意事項: vm.allOptions 與 vm.theOptions 陣列中的元素須是相同類型or物件
+        </p>
+    </div>
+</div>
+<hr />
+<div class="row clearfix">
+    <form role="form">
+        <div class="form-group">
+            <h3 class="col-sm-12 control-label" for="options">UI</h3>
+            <div class="col-sm-12">
+                <label class="checkbox-inline" ng-repeat="item in vm.allOptions">
+                    <input type="checkbox" checklist-model="vm.theOptions" checklist-value="item">{{item.text}}
+                </label>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <ul style="color: blue">
+            <li ng-repeat="item in vm.theOptions">
+                item.id: {{item.id}}, item.text: {{item.text}}
+            </li>
+        </ul>
+    </div>
+<hr />
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <h3>html</h3>
+        <pre class="prettyprint lang-html">
+
+        &lt;label class="checkbox-inline" ng-repeat="item in vm.allOptions"&gt;
+            &lt;input type="checkbox" checklist-model="vm.theOptions" checklist-value="item" /&gt;{{item.text}}
+        &lt;/label&gt;
+        </pre>
+    </div>
+</div>
+<hr />
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <h3>app.js</h3>
+        <pre class="prettyprint lang-html">
+
+            app = angular.module('app', ['checklist-model']);
+        </pre>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <h3>controller.js</h3>
+        <pre class="prettyprint">
+
+        app.controller('ChecklistModelCtrl', ['$scope', function ($scope) {
+            // 宣告vm
+            $scope.vm = {};
+            
+            // 所有的選項
+            $scope.vm.allOptions = [
+                {
+                    id: 1,
+                    text: 'apple'
+                },
+                {
+                    id: 2,
+                    text: 'banana'
+                },
+                {
+                    id: 3,
+                    text: 'car'
+                },
+                {
+                    id: 4,
+                    text: 'duck'
+                }
+            ];
+            
+            // 使用者的選擇
+            $scope.vm.theOptions = [];
+        }]);
+    </pre>
+    </div>
+</div>
+
+
+
+<script>
+    prettyPrint();
+</script>
+
+
+

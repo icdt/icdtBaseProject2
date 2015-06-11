@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>信全航空貨運承攬</title>
+
+    <link href="/aCollection/css/reset.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"/>
+    <!--<link href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />-->
+    <link href="/aCollection/lib/simpleSideBar/simple-sidebar.css" rel="stylesheet" />
+    <!--<link href="http://cdn.imnjb.me/libs/angular.ui-grid/3.0.0-rc.2-gf598dc3/ui-grid-unstable.min.css" rel="stylesheet" />-->
+    <link href="/aCollection/lib/uiGrid/ui-grid.css" rel="stylesheet" />
+    <link href="/aCollection/lib/prettify/prettify.css" rel="stylesheet" />
+
+
+    <link href="/aBase/appStyle/common.css" rel="stylesheet" />
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!--<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.7.0/lodash.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-sanitize.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-touch.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.js"></script>
+    <!--<script src="http://cdn.imnjb.me/libs/angular.ui-grid/3.0.0-rc.2-gf598dc3/ui-grid-unstable.min.js"></script>-->
+    <script src="/aCollection/lib/uiGrid/ui-grid.js"></script>
+    <script src="/aCollection/lib/checkListModel/checklist-model.js"></script>
+    <script src="/aCollection/lib/prettify/prettify.js"></script>
+
+
+    <!--<script src="//ui-grid.info/release/ui-grid-unstable.min.js"></script>-->
+   
+    <script src="/aBase/app.js"></script>
+    <script src="/aBase/appPages/aMain/mainCtrl.js"></script>
+    <script src="/aBase/appPages/bForm/checkbox/index.js"></script>
+    <script src="/aBase/appPages/aCodeStardard/crud/list.js"></script>
+   
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#menu-toggle" class="navbar-toggle menu_toggle" id="menu-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>-->
+                <a class="navbar-brand menu_toggle" href="#menu-toggle" id="menu-toggle">
+                    <img src="/ErpApp/img/LOGO1.jpg" alt="Alternate Text" width="auto" height="50px" />
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!--<li>
+                        <font color="blue">使用者名稱</font>
+                    </li>
+                    <li>
+                        <a ui-sref="main.loginLayout.content" ui-sref-active="menu_active">登入</a>
+                    </li>
+                    <li>
+                        <a ng-click="">登出</a>
+                    </li>-->
+                    <div class="admin" ng-if="user().isAuthenticated">{{user().username}}&nbsp;&nbsp;<a href="javascript:void(0);" ng-click="goToLogOut()">登出</a></div>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div ui-view></div>
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+</body>
+
+</html>

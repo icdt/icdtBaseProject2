@@ -10,6 +10,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using icdtBaseProject2.Models;
+using icdtBaseProject2.Identity;
 
 namespace icdtBaseProject2.Providers
 {
@@ -30,6 +31,7 @@ namespace icdtBaseProject2.Providers
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
+            //var roleManager = context.OwinContext.GetUserManager<ApplicationRoleManager>();
 
             ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
 

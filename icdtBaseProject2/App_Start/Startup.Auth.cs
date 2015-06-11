@@ -10,6 +10,8 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using icdtBaseProject2.Providers;
 using icdtBaseProject2.Models;
+using icdtBaseProject2.Identity;
+using icdtBaseProject2.Infrastructure;
 
 namespace icdtBaseProject2
 {
@@ -25,6 +27,7 @@ namespace icdtBaseProject2
             // 設定資料庫內容和使用者管理員以針對每個要求使用單一執行個體
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
 
             // 讓應用程式使用 Cookie 儲存已登入使用者的資訊
             // 並使用 Cookie 暫時儲存使用者利用協力廠商登入提供者登入的相關資訊；
@@ -37,7 +40,7 @@ namespace icdtBaseProject2
             {
                 TokenEndpointPath = new PathString("/Token"),
                 Provider = new ApplicationOAuthProvider(PublicClientId),
-                AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
+                //AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
                 AllowInsecureHttp = true
             };

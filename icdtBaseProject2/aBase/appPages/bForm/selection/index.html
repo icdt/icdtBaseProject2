@@ -1,0 +1,13 @@
+﻿<form role="form" class="form-horizontal" style="margin: 0 auto;">
+    <div class="col-md-6 column">
+
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="remark">提貨區域</label>
+            <div class="col-sm-8">
+                <select class="form-control" ng-options="item.area as item.area for item in allOptions" ng-model="area">
+                    <option value="">請選擇地區</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</form>

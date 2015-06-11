@@ -1,0 +1,109 @@
+﻿<div class="row clearfix">
+    <div class="col-md-12 column">
+        <h2>
+            icdt angular js 程式碼撰寫規則
+        </h2>
+    </div>
+</div>
+<hr />
+<div class="row clearfix"  style="background-color: white">
+    <div class="col-md-12 column">
+        <h3>
+            Controller
+        </h3>
+        <p>
+            <h4>基本</h4>
+            <pre class="prettyprint">
+
+                app.controller('SampleCtrl', ['$scope', function ($scope) {
+                    // 宣告vm
+                    $scope.vm = {};
+            
+                    // 宣告變數, function, object
+
+                    // 動作
+        
+                    // 使用者介面基本設定
+                    
+                }]);
+            </pre>
+        </p>
+        <p>
+            <h4>範例</h4>
+            <pre class="prettyprint">
+
+                app.controller('SampleCtrl', ['$scope', function ($scope) {
+                    // 宣告vm
+                    $scope.vm = {};
+            
+                    // 宣告變數, function, object
+                    $scope.vm.user = {};
+                    $scope.vm.allLocationOptions = [];
+                    
+                    // 動作
+                    $scope.vm.create = function (){
+                    };                    
+                    // 使用者介面基本設定
+                    $scope.vm.allLocationOptions = ['Boston','LA','Seattle','NY'];
+                    
+                }]);
+            </pre>
+        </p>
+    </div>
+</div>
+<hr />
+<div class="row clearfix" style="background-color: white">
+    <div class="col-md-12 column">
+        <h3>
+            Factory
+        </h3>
+        <p>
+            <h4>基本</h4>
+            <pre class="prettyprint">
+
+                app.factory('SampleFactory', ['$http', function ($http) {
+                    // 宣告api base url
+                    var api = 
+                    return{
+                        // checklist, select選項
+                        allLocationOptions:[{},{},{}],
+                        
+                        // crud
+                        getAll: function(){},
+                        getOne: function(ppId){},
+                        getByDate: function(ppDate){},
+                        getByDateInterval: function(ppStart, ppEnd){},
+                        getByName: function(ppObj){},
+                        create: function(ppObj){},
+                        update: function(ppObj){},
+                        remove: functoin(ppId){}
+                    };
+                }]);
+            </pre>
+        </p>
+        <p>
+            <h4>範例</h4>
+            <pre class="prettyprint">
+
+                app.factory('SampleFactory', ['$http', function ($http) {
+                    return{
+                        // checklist, select選項
+                        allLocationOptions:[{},{},{}],
+                        
+                        // crud
+                        getAll: function(){
+                            return $http.get()
+                        },
+                        getOne: function(ppId){},
+                        getByDate: function(ppDate){},
+                        getByDateInterval: function(ppStart, ppEnd){},
+                        getByName: function(ppObj){},
+                        create: function(ppObj){},
+                        update: function(ppObj){},
+                        remove: functoin(ppId){}
+                    };
+                }]);
+            </pre>
+        </p>
+    </div>
+</div>
