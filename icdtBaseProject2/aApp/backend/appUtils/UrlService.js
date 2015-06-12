@@ -10,7 +10,7 @@ angular.module('utility.config', [])
 
     return {
 
-        baseUrl: 'http://localhost:1131/'
+        baseUrl: 'http://localhost:1131'
 
     };
 

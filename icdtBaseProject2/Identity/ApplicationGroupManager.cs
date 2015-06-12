@@ -7,6 +7,7 @@ using System.Web;
 using Microsoft.AspNet.Identity.Owin;
 using System.Data.Entity;
 using icdtBaseProject2.Infrastructure;
+using icdtBaseProject2.Models.ViewModels;
 
 namespace icdtBaseProject2.Identity
 {
@@ -44,6 +45,32 @@ namespace icdtBaseProject2.Identity
             }
         }
 
+        public List<GroupRoleObj> GetAllGroupRoles()
+        {
+            var groups = _db.ApplicationGroups.Include("ApplicationRoles").ToList();
+            var roles = _roleManager.Roles.ToList();
+
+            List<GroupRoleObj> groupRoleObjs = new List<GroupRoleObj>();
+
+            foreach (ApplicationGroup grp in groups)
+            {
+                var groupRoles = (from r in roles
+                                  where grp.ApplicationRoles
+                                    .Any(ap => ap.ApplicationRoleId == r.Id)
+                                  select r.Name).ToList();
+                GroupRoleObj groupRoleObj = new GroupRoleObj()
+                {
+                    Id = grp.Id,
+                    Name = grp.Name,
+                    Description = grp.Description,
+                    RolesInGroup = groupRoles.ToArray<string>()
+                };
+                groupRoleObjs.Add(groupRoleObj);
+            }
+            
+            return groupRoleObjs;
+        }
+
 
         public async Task<IdentityResult> CreateGroupAsync(ApplicationGroup group)
         {
@@ -58,12 +85,22 @@ namespace icdtBaseProject2.Identity
             return IdentityResult.Success;
         }
 
+        public ApplicationGroup MyCreateGroup(ApplicationGroup group)
+        {
+            group = _groupStore.MyCreate(group);
+            return group;
+        }
+
 
         public IdentityResult SetGroupRoles(string groupId, params string[] roleNames)
         {
             // Clear all the roles associated with this group:
-            var thisGroup = this.FindById(groupId);
-            thisGroup.ApplicationRoles.Clear();
+            ApplicationGroup thisGroup = _db.ApplicationGroups.Include("ApplicationRoles").Where(p => p.Id == groupId).FirstOrDefault();
+            var thisGroupRoles = thisGroup.ApplicationRoles.ToList();
+            foreach (var item in thisGroupRoles)
+            {
+                thisGroup.ApplicationRoles.Remove(item);
+            }
             _db.SaveChanges();
 
             // Add the new roles passed in:
@@ -86,6 +123,39 @@ namespace icdtBaseProject2.Identity
             return IdentityResult.Success;
         }
 
+        public IdentityResult SetGroupRoles(string groupId, GroupRoleObj groupRoleObj)
+        {
+            var roleNames = groupRoleObj.RolesInGroup;
+
+            // Clear all the roles associated with this group:
+            // var thisGroup = this.FindById(groupId);
+            ApplicationGroup thisGroup = _db.ApplicationGroups.Include("ApplicationRoles").Where(p => p.Id == groupId).FirstOrDefault();
+            var thisGroupRoles = thisGroup.ApplicationRoles.ToList();
+            foreach (var item in thisGroupRoles)
+            {
+                thisGroup.ApplicationRoles.Remove(item);
+            }
+            _db.SaveChanges();
+
+            // Add the new roles passed in:
+            var newRoles = _roleManager.Roles.Where(r => roleNames.Any(n => n == r.Name));
+            foreach (var role in newRoles)
+            {
+                thisGroup.ApplicationRoles.Add(new ApplicationGroupRole
+                {
+                    ApplicationGroupId = groupId,
+                    ApplicationRoleId = role.Id
+                });
+            }
+            _db.SaveChanges();
+
+            // Reset the roles for all affected users:
+            foreach (var groupUser in thisGroup.ApplicationUsers)
+            {
+                this.RefreshUserGroupRoles(groupUser.ApplicationUserId);
+            }
+            return IdentityResult.Success;
+        }
 
         public async Task<IdentityResult> SetGroupRolesAsync(
             string groupId, params string[] roleNames)
@@ -370,13 +440,37 @@ namespace icdtBaseProject2.Identity
 
         public IEnumerable<ApplicationRole> GetGroupRoles(string groupId)
         {
-            var grp = _db.ApplicationGroups.FirstOrDefault(g => g.Id == groupId);
+            var grp = _db.ApplicationGroups.Include("ApplicationRoles").FirstOrDefault(g => g.Id == groupId);
             var roles = _roleManager.Roles.ToList();
-            var groupRoles = from r in roles
-                             where grp.ApplicationRoles
+            var groupRoles = (from r in roles
+                              where grp.ApplicationRoles
                                 .Any(ap => ap.ApplicationRoleId == r.Id)
-                             select r;
+                              select r).ToList();
             return groupRoles;
+        }
+
+        public GroupRoleObj GetGroupRolesObj(string groupId)
+        {
+            var grp = _db.ApplicationGroups.Include("ApplicationRoles").FirstOrDefault(g => g.Id == groupId);
+            var roles = _roleManager.Roles.ToList();
+            var groupRoles = (from r in roles
+                              where grp.ApplicationRoles
+                                .Any(ap => ap.ApplicationRoleId == r.Id)
+                              select r.Name).ToList();
+            GroupRoleObj groupObj = new GroupRoleObj() {
+                Id =grp.Id,
+                Name = grp.Name,
+                Description = grp.Description,
+                RolesInGroup = groupRoles.ToArray<string>()
+            };
+            return groupObj;
+        }
+
+        public ApplicationGroup GetGroupRolesInObj(string groupId)
+        {
+            var grp = _db.ApplicationGroups.Include("ApplicationRoles").FirstOrDefault(g => g.Id == groupId);
+           
+            return grp;
         }
 
 

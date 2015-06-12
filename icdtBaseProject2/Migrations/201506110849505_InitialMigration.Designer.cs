@@ -13,7 +13,7 @@ namespace icdtBaseProject2.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201506110824073_InitialMigration"; }
+            get { return "201506110849505_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source

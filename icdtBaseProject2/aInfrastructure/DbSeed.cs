@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.AspNet.Identity;
 using icdtBaseProject2.Identity;
+using icdtBaseProject2.Models.ViewModels;
 
 namespace icdtBaseProject2.Infrastructure
 {
@@ -33,9 +34,9 @@ namespace icdtBaseProject2.Infrastructure
             var GroupManager = new ApplicationGroupManager(context, UserManager, RoleManager);
             foreach (var item in groups)
             {
-                if (!GroupManager.Groups.Any(g => g.Name == item.GroupName))
+                if (!GroupManager.Groups.Any(g => g.Name == item.Name))
                 {
-                    var g = new ApplicationGroup() { Name = item.GroupName, Description = "系統預設群組" };
+                    var g = new ApplicationGroup() { Name = item.Name, Description = "系統預設群組" };
                     var result = GroupManager.CreateGroup(g);
                     if (result.Succeeded)
                     {
@@ -63,16 +64,18 @@ namespace icdtBaseProject2.Infrastructure
 
             if (!context.Users.Any())
             {
+                string groupId = GroupManager.Groups.First(g => g.Name == "Admin").Id;
+
                 IdentityResult result1 = UserManager.Create(user1, "manager");
                 if (result1.Succeeded)
-                {
-                    GroupManager.SetUserGroups(user1.Id, new string[] { "Admin" });
+                {   
+                    GroupManager.SetUserGroups(user1.Id, new string[] { groupId });
                 }
                 
                 IdentityResult result2 = UserManager.Create(user2, "abc123");
                 if (result2.Succeeded)
-                {
-                    GroupManager.SetUserGroups(user2.Id, new string[] { "Admin" });
+                {   
+                    GroupManager.SetUserGroups(user2.Id, new string[] { groupId });
                 }
                
             }
@@ -97,7 +100,7 @@ namespace icdtBaseProject2.Infrastructure
             get
             {
                 return new List<GroupRoleObj>() {
-                    new GroupRoleObj() { GroupName = "Admin", RolesInGroup = AvailableModules.Permissions}
+                    new GroupRoleObj() { Name = "Admin", RolesInGroup = AvailableModules.Permissions}
                 };
             }
 
@@ -107,9 +110,5 @@ namespace icdtBaseProject2.Infrastructure
 
     }
 
-    public class GroupRoleObj
-    {
-        public string GroupName { get; set; }
-        public string[] RolesInGroup { get; set; }
-    }
+
 }

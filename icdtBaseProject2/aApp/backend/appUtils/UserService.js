@@ -1,6 +1,6 @@
 'use strict';
 
-app.service('User', ['$http', '$window', function ($http, $window) {
+app.service('User', ['$http', '$window', 'UrlHelper', function ($http, $window, UrlHelper) {
     function NoAuthenticationException(message) {
       this.name = 'AuthenticationRequired';
       this.message = message;
@@ -119,8 +119,8 @@ app.service('User', ['$http', '$window', function ($http, $window) {
 
     this.authenticate = function (username, password, successCallback, errorCallback, persistData) {
 
-        //var url = UrlHelper.prepareTokenUrl('token');
-        var url='http://sinchanapitest.azurewebsites.net/token';
+      var url = UrlHelper.prepareUrl('token');
+       
 
       this.removeAuthentication();
       var config = {

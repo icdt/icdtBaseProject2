@@ -50,6 +50,12 @@ namespace icdtBaseProject2.Identity
             this.Context.SaveChanges();
         }
 
+        public virtual ApplicationGroup MyCreate(ApplicationGroup group)
+        {
+            this.Create(group);
+            return group;
+        }
+
 
         public virtual async Task CreateAsync(ApplicationGroup group)
         {

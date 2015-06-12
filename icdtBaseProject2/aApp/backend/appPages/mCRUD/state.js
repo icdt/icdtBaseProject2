@@ -26,7 +26,7 @@
 	    })
 //--------Create----------------------------------------------
     	.state('m.CRUD.create', {
-    	    url: '/:id',
+    	    url: '/create',
     	    views: {
     	        'content@m': {
     	            templateUrl: 'appPages/mCRUD/form.html',

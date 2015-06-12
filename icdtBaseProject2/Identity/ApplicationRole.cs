@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
 
 namespace icdtBaseProject2.Identity
 {
@@ -22,6 +18,7 @@ namespace icdtBaseProject2.Identity
             this.Name = name;
         }
 
+        [JsonIgnore]
         public virtual ICollection<ApplicationGroupRole> ApplicationRoles { get; set; }
 
         // Add any custom Role properties/code here

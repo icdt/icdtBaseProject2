@@ -118,7 +118,9 @@ namespace icdtBaseProject2.Migrations
                         Id = c.String(nullable: false, maxLength: 128),
                         MobilePhone = c.String(),
                         Address = c.String(),
-                    })
+                        GID = c.Guid(defaultValueSql: "newid()"),
+                        CreateOn = c.DateTime(defaultValueSql: "getdate()"),
+                })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.Id)
                 .Index(t => t.Id);
@@ -127,10 +129,12 @@ namespace icdtBaseProject2.Migrations
                 "dbo.Orders",
                 c => new
                     {
-                        id = c.Guid(nullable: false),
+                        id = c.Guid(nullable: false, defaultValueSql: "newid()"),
                         OrderId = c.String(),
                         OrderDate = c.DateTime(nullable: false),
-                    })
+                        GID = c.Guid(defaultValueSql: "newid()"),
+                        CreateOn = c.DateTime(defaultValueSql: "getdate()"),
+                })
                 .PrimaryKey(t => t.id);
             
         }

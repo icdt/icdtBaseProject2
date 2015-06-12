@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -33,8 +34,9 @@ namespace icdtBaseProject2.Identity
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
-
+        [JsonIgnore]
         public virtual ICollection<ApplicationGroupRole> ApplicationRoles { get; set; }
+        [JsonIgnore]
         public virtual ICollection<ApplicationUserGroup> ApplicationUsers { get; set; }
     }
 

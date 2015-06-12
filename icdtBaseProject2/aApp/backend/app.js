@@ -7,10 +7,12 @@
     'UIGRID',
     'icdt.settings',
     'utility',
+    'checklist-model',
 
     //state
     'icdt.states.m',
-    'icdt.states.m.CRUD'
+    'icdt.states.m.CRUD',
+    'icdt.states.m.Groups'
 
 ]);
 

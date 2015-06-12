@@ -26,7 +26,7 @@
 	    })
 //--------Create----------------------------------------------
     	.state('m.Groups.create', {
-    	    url: '/:id',
+    	    url: '/create',
     	    views: {
     	        'content@m': {
     	            templateUrl: 'appPages/mGroups/form.html',

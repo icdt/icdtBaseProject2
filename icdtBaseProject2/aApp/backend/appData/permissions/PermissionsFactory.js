@@ -1,4 +1,4 @@
-﻿app.factory('GroupsFactory', ['$http', function ($http) {
+﻿app.factory('GroupsFactory', ['$http', 'UrlHelper', function ($http, UrlHelper) {
 
     return {
        
@@ -23,9 +23,17 @@
             var url = UrlHelper.prepareUrl('api/groups/' + ppId);
             return $http.delete(url);
         },
+        getGroupRoles: function (groupId) {
+            var url = UrlHelper.prepareUrl('api/groups/' + groupId + '/roles');
+            return $http.get(url);
+        },
         setUserGroups: function (ppUserId, ppGroups) {
-            var url = UrlHelper.prepareUrl('api/user/' + ppUserId + '/userGroups');
+            var url = UrlHelper.prepareUrl('api/user/userGroups');
             return $http.delete(url, ppGroups);
+        },
+        getUserGroups: function () {
+            var url = UrlHelper.prepareUrl('api/user/userGroups');
+            return $http.get(url);
         }
     };
 }]);

@@ -8,7 +8,7 @@ using System.Web;
 
 namespace icdtBaseProject2.Models
 {
-    public class UserProfile
+    public class UserProfile:Entity
     {
         [Key, ForeignKey("UserAccount")]
         public string Id { get; set; }

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace icdtBaseProject2.Models
 {
-    public class Order
+    public class Order:Entity
     {
         public Guid id { get; set; }
 

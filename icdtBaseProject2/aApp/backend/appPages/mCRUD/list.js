@@ -16,7 +16,7 @@ angular.module('app', []).controller('ListicdtdataCtrl', [
     // ui-grid修改按鈕事件, 寫在columnDefs中, 似乎無法用vm
     $scope.goToUpdateForm = function (obj) {
         $rootScope.selectedObj = obj;
-        $state.go("m.CRUD.update");
+        $state.go("m.CRUD.edit");
     };
     $scope.goToDeleteForm = function (obj) {
         $rootScope.selectedObj = obj;

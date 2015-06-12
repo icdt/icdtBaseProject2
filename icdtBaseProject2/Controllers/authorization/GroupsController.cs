@@ -1,15 +1,18 @@
 ﻿using icdtBaseProject2.Identity;
+using icdtBaseProject2.Infrastructure;
+using icdtBaseProject2.Models.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace icdtBaseProject2.Controllers.api
 {
-    [Authorize(Roles = "Permissions")]
+    [Authorize(Roles = "Admin")]
     public class GroupsController : BaseController
     {
 
@@ -17,40 +20,43 @@ namespace icdtBaseProject2.Controllers.api
         [Route("api/groups")]
         public IHttpActionResult GetGroups()
         {
-            return Ok(GroupManager.Groups);
+            return Ok(GroupManager.GetAllGroupRoles());
         }
 
         [HttpGet]
-        [Route("api/groups/{id}")]
-        public IHttpActionResult GetGroup(Guid id)
+        [Route("api/groups/{id}/roles")]
+        public IHttpActionResult GetGroupRole(string id)
         {
-            var group = GroupManager.FindById(id.ToString());
-            if (group == null)
+            GroupRoleObj groupRole = GroupManager.GetGroupRolesObj(id.ToString());
+            
+            if (groupRole == null)
             {
                 return NotFound();
             }
-
-            return Ok(group);
+            // 傳回字串陣列
+            return Ok(groupRole);
         }
 
         [HttpPut]
         [Route("api/groups/{id}")]
         // PUT: api/Groups/5
-        public IHttpActionResult PutGroup(Guid id, ApplicationGroup ppGroup)
+        public IHttpActionResult PutGroupRoles(string id, GroupRoleObj ppGroup)
         {
-            string gId = id.ToString();
-
+          
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (gId != ppGroup.Id)
-            {
-                return BadRequest();
-            }
+            ApplicationGroup pureGroup = new ApplicationGroup() {
+                Id = ppGroup.Id,
+                Name = ppGroup.Name,
+                Description = ppGroup.Description
+            };
 
-            IdentityResult result = GroupManager.UpdateGroup(ppGroup);
+            GroupManager.UpdateGroup(pureGroup);
+
+            IdentityResult result = GroupManager.SetGroupRoles(id, ppGroup);
 
             if (result.Succeeded)
             {
@@ -72,11 +78,11 @@ namespace icdtBaseProject2.Controllers.api
                 return BadRequest(ModelState);
             }
 
-            IdentityResult identityResult = GroupManager.CreateGroup(ppGroup);
+            ApplicationGroup group = GroupManager.MyCreateGroup(ppGroup);
 
-            if (identityResult.Succeeded)
+            if (!"".Equals(group.Id) || group.Id != null)
             {
-                return Ok();
+                return Ok(group);
             }
             else
             {
@@ -100,8 +106,7 @@ namespace icdtBaseProject2.Controllers.api
                 return InternalServerError();
             }
         }
-
-
+        
         #region 使用者群組操作
         [HttpPost]
         [Route("api/user/{userId}/userGroups")]
@@ -123,7 +128,7 @@ namespace icdtBaseProject2.Controllers.api
         [HttpGet]
         [Route("api/user/{userId}/userGroups")]
         public IHttpActionResult GetUserGroups(string userId)
-        {
+        {   
             var userGroups = GroupManager.GetUserGroups(userId);
 
             return Ok(userGroups);

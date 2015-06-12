@@ -222,6 +222,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\authorization\AccountController.cs" />
+    <Compile Include="Controllers\authorization\PermissionsController.cs" />
     <Compile Include="Controllers\authorization\UsersController.cs" />
     <Compile Include="Controllers\business\BaseController.cs" />
     <Compile Include="Controllers\business\OrdersController.cs" />
@@ -250,15 +251,17 @@
     <Compile Include="Identity\GroupStoreBase.cs" />
     <Compile Include="Identity\IdentityExtension.cs" />
     <Compile Include="Identity\RoleClaimAuthorize.cs" />
-    <Compile Include="Migrations\201506110824073_InitialMigration.cs" />
-    <Compile Include="Migrations\201506110824073_InitialMigration.Designer.cs">
-      <DependentUpon>201506110824073_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201506110849505_InitialMigration.cs" />
+    <Compile Include="Migrations\201506110849505_InitialMigration.Designer.cs">
+      <DependentUpon>201506110849505_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account\AccountBindingModels.cs" />
     <Compile Include="Models\Account\AccountViewModels.cs" />
+    <Compile Include="Models\BaseField\Entity.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\UserProfile.cs" />
+    <Compile Include="Models\ViewModels\GroupRoleObj.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -301,12 +304,12 @@
     <Content Include="aApp\backend\appPages\mUser\list.html" />
     <Content Include="aApp\backend\appPages\mUser\list.js" />
     <Content Include="aApp\backend\appPages\mUser\state.js" />
-    <Content Include="aApp\backend\appPages\mPermissions\create.js" />
-    <Content Include="aApp\backend\appPages\mPermissions\edit.js" />
-    <Content Include="aApp\backend\appPages\mPermissions\form.html" />
-    <Content Include="aApp\backend\appPages\mPermissions\list.html" />
-    <Content Include="aApp\backend\appPages\mPermissions\list.js" />
-    <Content Include="aApp\backend\appPages\mPermissions\state.js" />
+    <Content Include="aApp\backend\appPages\mGroups\create.js" />
+    <Content Include="aApp\backend\appPages\mGroups\edit.js" />
+    <Content Include="aApp\backend\appPages\mGroups\form.html" />
+    <Content Include="aApp\backend\appPages\mGroups\list.html" />
+    <Content Include="aApp\backend\appPages\mGroups\list.js" />
+    <Content Include="aApp\backend\appPages\mGroups\state.js" />
     <Content Include="aApp\backend\appPages\mOrder\create.js" />
     <Content Include="aApp\backend\appPages\mOrder\edit.js" />
     <Content Include="aApp\backend\appPages\mOrder\form.html" />
@@ -464,6 +467,7 @@
     <Folder Include="aBase\appPages\cUIGRID\" />
     <Folder Include="aBase\appPages\dSignalr\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Hubs\" />
     <Folder Include="Views\contents\" />
     <Folder Include="Views\files\" />
   </ItemGroup>
@@ -475,8 +479,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201506110824073_InitialMigration.resx">
-      <DependentUpon>201506110824073_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201506110849505_InitialMigration.resx">
+      <DependentUpon>201506110849505_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
