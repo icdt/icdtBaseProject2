@@ -27,7 +27,7 @@ namespace icdtBaseProject2.Infrastructure
             //}
         }
 
-        public static void InitializeGroup(ApplicationDbContext context, List<GroupRoleObj> groups)
+        public static void InitializeGroup(ApplicationDbContext context, List<InitGroupRoleObj> groups)
         {
             var UserManager = new ApplicationUserManager(new ApplicationUserStore(context));
             var RoleManager = new ApplicationRoleManager(new ApplicationRoleStore(context));
@@ -40,7 +40,13 @@ namespace icdtBaseProject2.Infrastructure
                     var result = GroupManager.CreateGroup(g);
                     if (result.Succeeded)
                     {
-                        GroupManager.SetGroupRoles(g.Id, item.RolesInGroup);
+                        List<string> rolesList = new List<string>();
+                        for (int i = 0; i < item.RolesInGroup.Length; i++)
+                        {
+                            rolesList.Add(item.RolesInGroup[i]);
+                        }
+                        string[] rolesStr = rolesList.ToArray();
+                        GroupManager.SetGroupRoles(g.Id, rolesStr);
                     }
                 }
             }
@@ -95,20 +101,28 @@ namespace icdtBaseProject2.Infrastructure
                                                       };
 
 
-        public static List<GroupRoleObj> GroupAdmin
+        public static List<InitGroupRoleObj> GroupAdmin
         {
             get
             {
-                return new List<GroupRoleObj>() {
-                    new GroupRoleObj() { Name = "Admin", RolesInGroup = AvailableModules.Permissions}
+                return new List<InitGroupRoleObj>() {
+                    new InitGroupRoleObj() { Name = "Admin", RolesInGroup = AvailableModules.Permissions}
                 };
             }
 
         }
 
+
+
         #endregion
 
     }
 
-
+    public class InitGroupRoleObj
+    {
+        public string Id { set; get; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string[] RolesInGroup { get; set; }
+    }
 }

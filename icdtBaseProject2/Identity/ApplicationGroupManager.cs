@@ -57,13 +57,26 @@ namespace icdtBaseProject2.Identity
                 var groupRoles = (from r in roles
                                   where grp.ApplicationRoles
                                     .Any(ap => ap.ApplicationRoleId == r.Id)
-                                  select r.Name).ToList();
+                                  select r).ToList();
+
+                //var groupRoles = _db.Roles.Where(u => 
+                //        grp.ApplicationRoles.Any(ap => ap.ApplicationRoleId == u.Id))
+                //        .Select(p => new RoleInfo(){ Id = p.Id, Name = p.Name }).ToList();
+
+                //var groupRoles = _db.Roles.Where(r => grp.ApplicationRoles.Any(ap => ap.ApplicationRoleId == r.Id)).ToList();
+                List<RoleInfo> roleInfos = new List<RoleInfo>();
+                foreach (var item in groupRoles)
+                {
+                    RoleInfo temp = new RoleInfo() {Id=item.Id, Name=item.Name };
+                    roleInfos.Add(temp);
+                }
+
                 GroupRoleObj groupRoleObj = new GroupRoleObj()
                 {
                     Id = grp.Id,
                     Name = grp.Name,
                     Description = grp.Description,
-                    RolesInGroup = groupRoles.ToArray<string>()
+                    RolesInGroup = roleInfos
                 };
                 groupRoleObjs.Add(groupRoleObj);
             }
@@ -71,13 +84,11 @@ namespace icdtBaseProject2.Identity
             return groupRoleObjs;
         }
 
-
         public async Task<IdentityResult> CreateGroupAsync(ApplicationGroup group)
         {
             await _groupStore.CreateAsync(group);
             return IdentityResult.Success;
         }
-
 
         public IdentityResult CreateGroup(ApplicationGroup group)
         {
@@ -90,7 +101,6 @@ namespace icdtBaseProject2.Identity
             group = _groupStore.MyCreate(group);
             return group;
         }
-
 
         public IdentityResult SetGroupRoles(string groupId, params string[] roleNames)
         {
@@ -125,8 +135,13 @@ namespace icdtBaseProject2.Identity
 
         public IdentityResult SetGroupRoles(string groupId, GroupRoleObj groupRoleObj)
         {
-            var roleNames = groupRoleObj.RolesInGroup;
+            var roles = groupRoleObj.RolesInGroup;
+            List<string> roleNames = new List<string>();
 
+            foreach (var item in roles)
+            {
+                roleNames.Add(item.Name);
+            }
             // Clear all the roles associated with this group:
             // var thisGroup = this.FindById(groupId);
             ApplicationGroup thisGroup = _db.ApplicationGroups.Include("ApplicationRoles").Where(p => p.Id == groupId).FirstOrDefault();
@@ -239,6 +254,35 @@ namespace icdtBaseProject2.Identity
                 {
                     ApplicationUserId = userId,
                     ApplicationGroupId = groupId
+                });
+            }
+            _db.SaveChanges();
+
+            this.RefreshUserGroupRoles(userId);
+            return IdentityResult.Success;
+        }
+
+        public IdentityResult SetUserGroups(string userId, List<UserGroupObj> userGroupObjs)
+        {   
+            // Clear current group membership:
+            var currentGroups = this.GetUserGroups(userId);
+            foreach (var group in currentGroups)
+            {
+                group.ApplicationUsers
+                    .Remove(group.ApplicationUsers
+                    .FirstOrDefault(gr => gr.ApplicationUserId == userId
+                ));
+            }
+            _db.SaveChanges();
+
+            // Add the user to the new groups:
+            foreach (var group in userGroupObjs)
+            {
+                var newGroup = this.FindById(group.Id);
+                newGroup.ApplicationUsers.Add(new ApplicationUserGroup
+                {
+                    ApplicationUserId = userId,
+                    ApplicationGroupId = group.Id
                 });
             }
             _db.SaveChanges();
@@ -456,12 +500,26 @@ namespace icdtBaseProject2.Identity
             var groupRoles = (from r in roles
                               where grp.ApplicationRoles
                                 .Any(ap => ap.ApplicationRoleId == r.Id)
-                              select r.Name).ToList();
-            GroupRoleObj groupObj = new GroupRoleObj() {
-                Id =grp.Id,
+                              select r).ToList();
+
+            //var groupRoles = _db.Roles.Where(r => 
+            //        grp.ApplicationRoles.Any(ap => ap.ApplicationRoleId == r.Id))
+            //        .Select(u => new RoleInfo() { Id = u.Id, Name = u.Name }).ToList();
+
+            //var groupRoles = _db.Roles.Where(r => grp.ApplicationRoles.Any(ap => ap.ApplicationRoleId == r.Id)).ToList();
+            List<RoleInfo> roleInfos = new List<RoleInfo>();
+            foreach (var item in groupRoles)
+            {
+                RoleInfo temp = new RoleInfo() { Id = item.Id, Name = item.Name };
+                roleInfos.Add(temp);
+            }
+
+            GroupRoleObj groupObj = new GroupRoleObj()
+            {
+                Id = grp.Id,
                 Name = grp.Name,
                 Description = grp.Description,
-                RolesInGroup = groupRoles.ToArray<string>()
+                RolesInGroup = roleInfos
             };
             return groupObj;
         }

@@ -9,12 +9,12 @@ angular.module('app', []).controller('EditicdtdataCtrl', [
     $scope.vm = {};
 
     // 宣告變數, function, object
-    $scope.vm.icdtdata = {};
+    $scope.vm.singleObj = {};
 
     // 動作
     // 儲存
     $scope.vm.save = function () {
-        icdtdataFactory.update($scope.vm.icdtdata).success(function (data) {
+        icdtdataFactory.update($scope.vm.singleObj).success(function (data) {
 
             $state.go('m.CRUD.list');
         }).error(function (err) {
@@ -23,7 +23,7 @@ angular.module('app', []).controller('EditicdtdataCtrl', [
     };
     // 刪除
     $scope.vm.remove = function () {
-        icdtdataFactory.remove($scope.vm.icdtdata).success(function (data) {
+        icdtdataFactory.remove($scope.vm.singleObj).success(function (data) {
 
             $state.go('m.CRUD.list');
         }).error(function (err) {
@@ -33,7 +33,7 @@ angular.module('app', []).controller('EditicdtdataCtrl', [
 
     // 使用者介面基本設定
     $scope.vm.isEdit = true;
-    $scope.vm.icdtdata = $rootScope.selectedObj;
+    $scope.vm.singleObj = $rootScope.selectedObj;
 
 
 }]);

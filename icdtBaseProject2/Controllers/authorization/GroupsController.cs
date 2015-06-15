@@ -12,7 +12,7 @@ using System.Web.Http;
 
 namespace icdtBaseProject2.Controllers.api
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class GroupsController : BaseController
     {
 

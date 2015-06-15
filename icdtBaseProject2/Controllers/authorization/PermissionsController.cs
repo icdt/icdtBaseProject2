@@ -14,8 +14,19 @@ namespace icdtBaseProject2.Controllers.authorization
         [HttpGet]
         [Route("api/permissions")]
         public IHttpActionResult GetPermissions()
-        { 
-            return Ok(AvailableModules.Permissions);
+        {
+            var roleList = RoleManager.Roles.Select(u => new { Id = u.Id, Name = u.Name }).ToList();
+            return Ok(roleList);
+
+            //Json
+            //    [
+            //        {
+            //            Id: Guid,
+            //            Name: 角色名稱
+            //        }
+            //    ]
+
+
         }
     }
 }

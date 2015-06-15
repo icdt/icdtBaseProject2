@@ -1,58 +1,58 @@
-﻿angular.module('icdt.states.m.Groups', [])
+﻿angular.module('icdt.states.m.Users', [])
 
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $stateProvider
-        .state('m.Groups', {
+        .state('m.Users', {
             abstract: true,
-            url: '/Groups',
+            url: '/Users',
             template: '<div ui-view></div>'
         })
 //-------List-----------------------------------------------
-	    .state('m.Groups.list', {
+	    .state('m.Users.list', {
 	        url: '/list',
 	        views: {
 	            'content@m': {
-	                templateUrl: 'appPages/mGroups/list.html',
-	                controller: 'ListGroupsCtrl'
+	                templateUrl: 'appPages/mUsers/list.html',
+	                controller: 'ListUsersCtrl'
 	            }
 	        },
 	        resolve: {
 	            loadcustomerListCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
 	                // you can lazy load files for an existing module
-	                return $ocLazyLoad.load('appPages/mGroups/list.js');
+	                return $ocLazyLoad.load('appPages/mUsers/list.js');
 	            }]
 	        }
 	    })
 //--------Create----------------------------------------------
-    	.state('m.Groups.create', {
-    	    url: '/:id',
+    	.state('m.Users.create', {
+    	    url: '/create',
     	    views: {
     	        'content@m': {
-    	            templateUrl: 'appPages/mGroups/form.html',
-    	            controller: 'CreateGroupsCtrl'
+    	            templateUrl: 'appPages/mUsers/form.html',
+    	            controller: 'CreateUsersCtrl'
     	        }
     	    },
     	    resolve: {
     	        loadcustomerListCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
     	            // you can lazy load files for an existing module
-    	            return $ocLazyLoad.load('appPages/mGroups/create.js');
+    	            return $ocLazyLoad.load('appPages/mUsers/create.js');
     	        }]
     	    }
     	})
 //--------edit---------------------------------------------
-        .state('m.Groups.edit', {
+        .state('m.Users.edit', {
         	url: '/edit',
         	views: {
         	    'content@m': {
-        	        templateUrl: 'appPages/mGroups/form.html',
-        	        controller: 'EditGroupsCtrl'
+        	        templateUrl: 'appPages/mUsers/form.html',
+        	        controller: 'EditUsersCtrl'
         	    }
         	},
         	resolve: {
         	    loadcustomerListCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
         	        // you can lazy load files for an existing module
-        	        return $ocLazyLoad.load('appPages/mGroups/edit.js');
+        	        return $ocLazyLoad.load('appPages/mUsers/edit.js');
         	    }]
         	}
         })

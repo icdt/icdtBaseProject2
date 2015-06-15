@@ -42,7 +42,7 @@ angular.module('app', []).controller('EditGroupsCtrl', [
         }).error(function (err) {
             console.log(err);
         });
-
+        debugger;
         $scope.vm.theOptions = $scope.vm.group.RolesInGroup;
 
 

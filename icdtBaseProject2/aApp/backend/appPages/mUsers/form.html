@@ -4,11 +4,11 @@
     <br />
     <br />
     <h1>
-        群組明細
+        明細
         <small></small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 群組</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> 列表 </a></li>
         <li class="active">明細</li>
     </ol>
 </section>
@@ -24,32 +24,51 @@
                 <div class="box-body">
 
                     <form role="form" class="form-horizontal" style="margin: 0 auto;">
-                        <div class="col-md-8 column">
+                        <div class="col-md-6 column">
                             <div class="form-group">
-                                <label class="col-sm-4 control-label" for="">&nbsp;</label>
+                                <label class="col-sm-4 control-label" for="actions">&nbsp;</label>
                                 <div class="col-sm-8">
                                     <button type="submit" class="btn btn-success btn-flat block_inline" ng-click="vm.save()">儲存</button>&nbsp;&nbsp;
-                                    <button type="submit" class="btn btn-danger btn-flat block_inline" ng-click="vm.delete()">刪除</button>
+                                    <button type="submit" class="btn btn-danger btn-flat block_inline" ng-if="vm.isEdit" ng-click="vm.delete()">刪除</button>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label" for="personname">群組名稱</label>
+                                <label class="col-sm-4 control-label" for="使用者名稱">使用者名稱</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" ng-model="vm.group.Name" />
+                                    <input type="text" class="form-control" ng-model="vm.theUser.UserName" />
+                                </div>
+                            </div>
+                            <div class="form-group" ng-if="!vm.isEdit">
+                                <label class="col-sm-4 control-label" for="密碼">密碼</label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" ng-model="vm.theUser.Password" />
+                                </div>
+                            </div>
+                            <div class="form-group" ng-if="!vm.isEdit">
+                                <label class="col-sm-4 control-label" for="確認密碼">確認密碼</label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" ng-model="vm.theUser.ConfirmPassword" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label" for="personname">描述</label>
+                                <label class="col-sm-4 control-label" for="信箱">信箱</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" ng-model="vm.group.Description" />
+                                    <input type="text" class="form-control" ng-model="vm.theUser.Email" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label" for="">權限</label>
                                 <div class="col-sm-8 block_inline">
-                                    <label class="checkbox-inline" ng-repeat="item in vm.allPermissions">
-                                        <input type="checkbox" checklist-model="vm.theOptions" checklist-value="item" />{{item.Name}}
+                                    <label class="checkbox-inline" ng-repeat="item in vm.allGroups">
+                                        <input type="checkbox" checklist-model="vm.theUserGroups" checklist-value="item.Id" />{{item.Name}}
                                     </label>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="form-group" ng-if="vm.isEdit">
+                                <label class="col-sm-4 control-label" for="重設密碼">重設密碼</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" ng-model="vm.theUser.NewPassword" />
                                 </div>
                             </div>
                         </div>

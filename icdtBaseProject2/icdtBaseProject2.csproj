@@ -262,6 +262,8 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\ViewModels\GroupRoleObj.cs" />
+    <Compile Include="Models\ViewModels\UserGroupObj.cs" />
+    <Compile Include="Models\ViewModels\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -269,6 +271,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aApp\backend\app.js" />
+    <Content Include="aApp\backend\appData\user\UsersFactory.js" />
+    <Content Include="aApp\backend\appPages\mUsers\create.js" />
+    <Content Include="aApp\backend\appPages\mUsers\edit.js" />
+    <Content Include="aApp\backend\appPages\mUsers\form.html" />
+    <Content Include="aApp\backend\appPages\mUsers\list.html" />
+    <Content Include="aApp\backend\appPages\mUsers\list.js" />
+    <Content Include="aApp\backend\appPages\mUsers\state.js" />
     <Content Include="aApp\backend\appUtils\file\fileUtils.js" />
     <Content Include="aApp\backend\appData\permissions\PermissionsFactory.js" />
     <Content Include="aApp\backend\appData\options\optionsFactory.js" />
@@ -298,12 +307,6 @@
     <Content Include="aApp\backend\appLib\uiGrid\ui-grid.js" />
     <Content Include="aApp\backend\appPages\login\index.html" />
     <Content Include="aApp\backend\appPages\login\loginCtrl.js" />
-    <Content Include="aApp\backend\appPages\mUser\create.js" />
-    <Content Include="aApp\backend\appPages\mUser\edit.js" />
-    <Content Include="aApp\backend\appPages\mUser\form.html" />
-    <Content Include="aApp\backend\appPages\mUser\list.html" />
-    <Content Include="aApp\backend\appPages\mUser\list.js" />
-    <Content Include="aApp\backend\appPages\mUser\state.js" />
     <Content Include="aApp\backend\appPages\mGroups\create.js" />
     <Content Include="aApp\backend\appPages\mGroups\edit.js" />
     <Content Include="aApp\backend\appPages\mGroups\form.html" />

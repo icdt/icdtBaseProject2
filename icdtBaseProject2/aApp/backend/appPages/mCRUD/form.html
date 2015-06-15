@@ -29,7 +29,7 @@
                                 <label class="col-sm-4 control-label" for="actions">&nbsp;</label>
                                 <div class="col-sm-8">
                                     <button type="submit" class="btn btn-success btn-flat block_inline" ng-click="vm.save()">儲存</button>&nbsp;&nbsp;
-                                    <button type="submit" class="btn btn-danger btn-flat block_inline" ng-click="vm.delete()">刪除</button>
+                                    <button type="submit" class="btn btn-danger btn-flat block_inline" ng-if="vm.isEdit" ng-click="vm.delete()">刪除</button>
                                 </div>
                             </div>
                             <div class="form-group">
