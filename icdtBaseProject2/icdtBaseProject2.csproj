@@ -235,6 +235,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="aInfrastructure\ApplicationDbContext.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\MobileMVCFilter.cs" />
+    <Compile Include="Helpers\QRCode.cs" />
+    <Compile Include="Helpers\VerificationHelper.cs" />
     <Compile Include="Identity\ApplicationGroup.cs" />
     <Compile Include="Identity\ApplicationGroupManager.cs" />
     <Compile Include="Identity\ApplicationGroupStore.cs" />

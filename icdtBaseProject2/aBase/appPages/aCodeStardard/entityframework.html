@@ -11,18 +11,22 @@
         <h3>
             Include
         </h3>
+        <span>
+                Product -> Categories
+        </span>
         <p>
-            <h4>基本</h4>
+            <h4>基本</h4>            
             <pre class="prettyprint">
-
-               db.xxxx
+                db.Product.Include('Categories').ToList()
             </pre>
         </p>
         <p>
             <h4>進階1</h4>
+            <span>
+                Orders -> Products -> Categories
+            </span>
             <pre class="prettyprint">
-
-               db.xxxx
+                db.Orders.Include('Products').Include('Products.Categories')
             </pre>
         </p>
     </div>
@@ -33,18 +37,18 @@
         <h3>
             Select
         </h3>
+        <span>Articles: [ { Title:"", Id=1, Content:"" },{Title:"", Id=2, Content:""},{Title:"", Id=3, Content:""} ]</span>
         <p>
             <h4>基本</h4>
             <pre class="prettyprint">
-
-               db.xxxx
+               db.Articles.Select(a=>new { title:a.Title, id:a.Id }).ToList()
             </pre>
         </p>
         <p>
             <h4>進階1</h4>
             <pre class="prettyprint">
-               db.xxxx
+               db.Articles.Select(a=>new { title:a.Title, Id:a.Id, Auchor: a.author }).ToList()
             </pre>
         </p>
     </div>
-</div>
+</div>    
