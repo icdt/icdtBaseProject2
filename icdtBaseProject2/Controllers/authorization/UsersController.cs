@@ -28,23 +28,24 @@ namespace icdtBaseProject2.Controllers.authorization
         {
             var user = DB.Users.Where(u => u.Id == id).FirstOrDefault();
             var userGroups = GroupManager.GetUserGroups(id);
-            List<UserGroupObj> userGroupList = new List<UserGroupObj>();
+            //List<UserGroupObj> userGroupList = new List<UserGroupObj>();
+            List<string> userGroupList = new List<string>();
             foreach (var item in userGroups)
             {
-                UserGroupObj temp = new UserGroupObj() {
-                    Id = item.Id,
-                    Name = item.Name,
-                    Description = item.Description
-                };
+                //UserGroupObj temp = new UserGroupObj() {
+                //    Id = item.Id,
+                //    Name = item.Name,
+                //    Description = item.Description
+                //};
 
-                userGroupList.Add(temp);
+                userGroupList.Add(item.Id);
             }
 
             UserViewModel returnUserObj = new UserViewModel() {
                 Id= user.Id,
                 UserName= user.UserName,
                 Email = user.Email,
-                UserGroups = userGroupList
+                UserGroups = userGroupList.ToArray()
             };
 
             return Ok(returnUserObj);
@@ -104,9 +105,13 @@ namespace icdtBaseProject2.Controllers.authorization
 
             var user = DB.Users.Where(u => u.Id == userObj.Id).FirstOrDefault();
 
+            // update user info
             user.UserName = userObj.UserName;
             user.Email = userObj.Email;
+            DB.SaveChanges();
+            
 
+            //update user groups
             IdentityResult result = GroupManager.SetUserGroups(user.Id, userObj.UserGroups);
 
             if (result.Succeeded)

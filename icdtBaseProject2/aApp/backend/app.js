@@ -13,7 +13,8 @@
     'icdt.states.m',
     'icdt.states.m.CRUD',
     'icdt.states.m.Groups',
-    'icdt.states.m.Users'
+    'icdt.states.m.Users',
+    'icdt.states.m.CSV'
 
 ]);
 

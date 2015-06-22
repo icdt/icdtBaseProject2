@@ -16,7 +16,15 @@ angular.module('app', []).controller('EditUsersCtrl', [
     // 動作
     // 儲存
     $scope.vm.save = function () {
-        UsersFactory.update($scope.vm.Users).success(function (data) {
+
+        var updateObj = {
+            Id : $scope.vm.theUser.Id,
+            UserName : $scope.vm.theUser.UserName,
+            Email: $scope.vm.theUser.Email,
+            UserGroups: $scope.vm.theUserGroups
+        };
+
+        UsersFactory.update(updateObj).success(function (data) {
 
             $state.go('m.Users.list');
         }).error(function (err) {
@@ -42,13 +50,8 @@ angular.module('app', []).controller('EditUsersCtrl', [
 
     
     UsersFactory.getOne($rootScope.selectedObj.Id).success(function (data) {
-        console.log(data);
-        var userGroupIds = [];
-        for (var i = 0; i < data.UserGroups.length; i++) {
-            userGroupIds.push(data.UserGroups[i].Id);
-        }
-        debugger;
-    $scope.vm.theUserGroups = userGroupIds;
+        
+        $scope.vm.theUserGroups = data.UserGroups;
 
     }).error(function (err) {
         console.log(err);

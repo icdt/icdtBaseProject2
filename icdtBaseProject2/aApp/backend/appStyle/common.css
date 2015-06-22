@@ -59,3 +59,11 @@ body{
 .form-group.has-error .help-block {
   display: block;
 }
+
+/*.toast_text_left {
+    text-align: left !important;
+}*/
+
+.ng-toast__message {
+    text-align: left !important;
+}

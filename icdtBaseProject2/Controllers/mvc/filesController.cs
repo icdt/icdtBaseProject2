@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -34,6 +36,32 @@ namespace icdtBaseProject2.Controllers.mvc
             }
 
             return Content(result);
+        }
+
+        [HttpPost]
+        [Route("mvc/CSV")]
+        public ActionResult UploadCSV(HttpPostedFileBase FileUploadCSV)
+        {
+            StreamReader streamReader = new System.IO.StreamReader(FileUploadCSV.InputStream, System.Text.Encoding.Default);
+            string UploadOwnersString = streamReader.ReadToEnd();//(各筆資料分隔符號為\r\n)
+            UploadOwnersString = UploadOwnersString.Replace(" ", "");
+            streamReader.Dispose();
+
+            //int index = 0;
+            foreach (string SingleOwnerString in UploadOwnersString.Split(new string[] { "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                
+                string[] SourceProductValue = SingleOwnerString.Split(',');
+
+                // 根據記錄格式作調整
+                string[] recordFields = new string[] { "", "", "", "", "", "", "", "", "", "", "", "", "", "" };
+
+
+
+                
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
     }
 }

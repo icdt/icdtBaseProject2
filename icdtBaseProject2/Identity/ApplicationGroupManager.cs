@@ -236,13 +236,18 @@ namespace icdtBaseProject2.Identity
         public IdentityResult SetUserGroups(string userId, params string[] groupIds)
         {
             // Clear current group membership:
-            var currentGroups = this.GetUserGroups(userId);
+            //var currentGroups = this.GetUserGroups(userId);
+            var currentGroups = _db.ApplicationGroups.Include("ApplicationUsers").ToList();
             foreach (var group in currentGroups)
             {
-                group.ApplicationUsers
-                    .Remove(group.ApplicationUsers
-                    .FirstOrDefault(gr => gr.ApplicationUserId == userId
-                ));
+                var users = group.ApplicationUsers.ToList();
+                foreach (var user in users)
+                {
+                    if (user.ApplicationUserId == userId)
+                    {
+                        group.ApplicationUsers.Remove(user);
+                    }
+                }
             }
             _db.SaveChanges();
 

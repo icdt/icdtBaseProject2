@@ -9,11 +9,11 @@ angular.module('app', []).controller('CreateicdtdataCtrl', [
     $scope.vm = {};
 
     // 宣告變數, function, object
-    $scope.vm.icdtdata = {};
+    $scope.vm.SingleObj = {};
 
     // 動作
     $scope.vm.save = function () {
-        icdtdataFactory.create($scope.vm.icdtdata).success(function (data) {
+        icdtdataFactory.create($scope.vm.SingleObj).success(function (data) {
             $state.go('m.CRUD.list');
         }).error(function (err) {
             console.log(err);

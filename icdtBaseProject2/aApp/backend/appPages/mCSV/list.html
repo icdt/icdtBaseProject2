@@ -1,12 +1,12 @@
 ﻿<!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        使用者帳號列表
+        CSV上傳
         <small></small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 使用者帳號 </a></li>
-        <li class="active">列表</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> CSV </a></li>
+        <li class="active">上傳頁面</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -20,21 +20,15 @@
                 </div>--><!-- /.box-header -->
                 <div class="box-body">
                     <div class="row">
-                        <div class="col-md-2 column">
+                        <div class="col-md-8 column">
+                            <div class="form-group block_inline">
+                                <label for="exampleInputFile">選取檔案</label>
+                                <input type="file" >
+                            </div>
                             <div class="form-group block_inline" style="width:100px">
                                 <label for="" style="visibility: hidden">--</label><br />
-                                <button type="submit" class="btn btn-success btn-flat" ng-click="vm.goToCreateForm()"><span class="glyphicon glyphicon-plus"></span>新增資料</button>
+                                <button type="submit" class="btn btn-success btn-flat" ng-click="vm.uploadCSV()"><span class="glyphicon glyphicon-upload"></span>上傳CSV</button>
                             </div>
-                        </div>
-                        <div class="col-md-10 column">
-                            <!--<div class="form-group block_inline" style="width:100px">
-                                <label for="客戶名稱">客戶名稱</label><br />
-                                <input type="text" class="form-control" ng-model="vm.customer" />
-                            </div>
-                            <div class="form-group block_inline">
-                                <label for="btn" style="visibility: hidden">--</label><br />
-                                <button type="button" class="btn btn-success block_inline btn-flat" ng-click="searchOrder(record)">查詢</button>
-                            </div>-->
                         </div>
                     </div>
                     <div class="row">

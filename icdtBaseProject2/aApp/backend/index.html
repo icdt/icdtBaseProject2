@@ -16,9 +16,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Bootstrap 3.3.4 -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Font Awesome Icons -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" type="text/css">
     <!-- Ionicons -->
-    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" type="text/css"/>
     <!-- Theme style -->
     <link href="dist/css/AdminLTE.css" rel="stylesheet" />
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -66,6 +66,7 @@ desired effect
 -->
 <body ng-class="bodyClass">
     <div ui-view ng-class="wrapperClass"></div>
+    <toast></toast>
     <!-- REQUIRED JS SCRIPTS -->
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
@@ -110,14 +111,16 @@ desired effect
     <script src="appPages/mCRUD/state.js"></script>
     <script src="appPages/mGroups/state.js"></script>
     <script src="appPages/mUsers/state.js"></script>
+    <script src="appPages/mCSV/state.js"></script>
+
     <!--common modules-->
     <script src="appUtils/UrlService.js"></script>
     <script src="appUtils/settings/settingFactory.js"></script>
     <script src="appUtils/UserService.js"></script>
     <script src="appPages/login/loginCtrl.js"></script>
     <script src="appData/permissions/PermissionsFactory.js"></script>
-    <script src="appData/order/icdtdataFactory.js"></script>
     <script src="appData/user/UsersFactory.js"></script>
+
     <!-- AdminLTE App -->
     
     <!-- Optionally, you can add Slimscroll and FastClick plugins.

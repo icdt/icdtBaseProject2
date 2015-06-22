@@ -3,8 +3,8 @@
     $scope.vm = {};
 
     $scope.vm.user = {
-        UserName: 'customer1',
-        Password: 'abc123',
+        UserName: 'manager',
+        Password: 'manager',
         PersistData: ''
     };
 
@@ -16,7 +16,7 @@
 
     function onSuccess() {
         $rootScope.loginUser = User.getUserData();
-        $state.go('m.CRUD.list');
+        $state.go('m.Users.list');
     }
 
     function onFail(err) {

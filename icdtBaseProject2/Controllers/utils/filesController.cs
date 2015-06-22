@@ -92,7 +92,6 @@ namespace icdtBaseProject2.Controllers.api
         }
 
 
-
         #region 
         // POST api/<controller>
         //public void Post(HttpPostedFileBase upload, String userName, String forder)

@@ -33,7 +33,7 @@ namespace icdtBaseProject2.Models.ViewModels
 
         public string Email { get; set; }
 
-        public List<UserGroupObj> UserGroups { get; set; }
+        public string[] UserGroups { get; set; }
 
     }
 
