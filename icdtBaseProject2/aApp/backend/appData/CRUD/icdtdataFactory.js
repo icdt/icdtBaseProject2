@@ -13,6 +13,10 @@
             var url = UrlHelper.prepareUrl('api/icdtdata/' + ppId);
             return $http.get(url);
         },
+        getByKeyword: function (ppStr) {
+            var url = UrlHelper.prepareUrl('api/icdtdata?q=' + ppStr);
+            return $http.get(url);
+        },
         getByDate: function (ppDate) {
             var url = UrlHelper.prepareUrl('api/icdtdata?date' + ppDate);
             return $http.get(url);

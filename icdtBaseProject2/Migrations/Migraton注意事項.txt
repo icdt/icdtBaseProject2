@@ -1,0 +1,2 @@
+﻿                        GID = c.Guid(defaultValueSql:"newid()"),
+                        CreateOn = c.DateTime(defaultValueSql:"getdate()"),
