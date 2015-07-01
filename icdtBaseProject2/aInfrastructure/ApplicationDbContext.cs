@@ -7,6 +7,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using icdtBaseProject2.Identity;
+using icdtBaseProject2.Models.Tags;
 
 namespace icdtBaseProject2.Infrastructure
 {
@@ -18,6 +19,7 @@ namespace icdtBaseProject2.Infrastructure
         // public DbSet<Foo> Foos { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Order> Orders { set; get; }
+        public DbSet<TagItem> TagItems{ get; set; }
 
         public virtual IDbSet<ApplicationGroup> ApplicationGroups { get; set; }
         #endregion

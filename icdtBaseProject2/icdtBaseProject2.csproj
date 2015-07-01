@@ -260,11 +260,16 @@
     <Compile Include="Migrations\201506110849505_InitialMigration.Designer.cs">
       <DependentUpon>201506110849505_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506240743450_Init TagItem.cs" />
+    <Compile Include="Migrations\201506240743450_Init TagItem.Designer.cs">
+      <DependentUpon>201506240743450_Init TagItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account\AccountBindingModels.cs" />
     <Compile Include="Models\Account\AccountViewModels.cs" />
     <Compile Include="Models\BaseField\Entity.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Tags\TagItem.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\ViewModels\GroupRoleObj.cs" />
     <Compile Include="Models\ViewModels\UserGroupObj.cs" />
@@ -1382,6 +1387,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201506110849505_InitialMigration.resx">
       <DependentUpon>201506110849505_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506240743450_Init TagItem.resx">
+      <DependentUpon>201506240743450_Init TagItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
