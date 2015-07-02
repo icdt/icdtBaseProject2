@@ -144,7 +144,7 @@ namespace icdtBaseProject2.Identity
             }
             // Clear all the roles associated with this group:
             // var thisGroup = this.FindById(groupId);
-            ApplicationGroup thisGroup = _db.ApplicationGroups.Include("ApplicationRoles").Where(p => p.Id == groupId).FirstOrDefault();
+            ApplicationGroup thisGroup = _db.ApplicationGroups.Include("ApplicationRoles").Include("ApplicationUsers").Where(p => p.Id == groupId).FirstOrDefault();
             var thisGroupRoles = thisGroup.ApplicationRoles.ToList();
             foreach (var item in thisGroupRoles)
             {
@@ -431,10 +431,10 @@ namespace icdtBaseProject2.Identity
         public IdentityResult UpdateGroup(ApplicationGroup group)
         {
             _groupStore.Update(group);
-            foreach (var groupUser in group.ApplicationUsers)
-            {
-                this.RefreshUserGroupRoles(groupUser.ApplicationUserId);
-            }
+            //foreach (var groupUser in group.ApplicationUsers)
+            //{
+            //    this.RefreshUserGroupRoles(groupUser.ApplicationUserId);
+            //}
             return IdentityResult.Success;
         }
 
@@ -464,11 +464,12 @@ namespace icdtBaseProject2.Identity
 
         public IEnumerable<ApplicationGroup> GetUserGroups(string userId)
         {
-            var result = new List<ApplicationGroup>();
-            var userGroups = (from g in this.Groups
-                              where g.ApplicationUsers
-                                .Any(u => u.ApplicationUserId == userId)
-                              select g).ToList();
+            //var result = new List<ApplicationGroup>();
+            //var userGroups = (from g in this.Groups
+            //                  where g.ApplicationUsers
+            //                    .Any(u => u.ApplicationUserId == userId)
+            //                  select g).ToList();
+            List<ApplicationGroup> userGroups = _db.ApplicationGroups.Include("ApplicationRoles").Where(u => u.ApplicationUsers.Any(a => a.ApplicationUserId == userId)).ToList();
             return userGroups;
         }
 

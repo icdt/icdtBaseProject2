@@ -27,7 +27,7 @@ angular.module('app', []).controller('ListGroupsCtrl', [
     GroupsFactory.getAll().success(function (data) {
         $scope.gridOptions.data = data;
     }).error(function (err) {
-        console.log(err);
+        alert(err.Message);
     });
 
     // 使用者介面基本設定
