@@ -1,7 +1,7 @@
 ﻿
 angular.module('app', []).controller('CreateUsersCtrl', [
-    '$scope', '$state', '$rootScope', 'ngToast', 'UsersFactory',
-    function ($scope, $state, $rootScope, ngToast, UsersFactory) {
+    '$scope', '$state', '$rootScope', 'ngToast', 'UsersFactory', 'ngToast',
+    function ($scope, $state, $rootScope, ngToast, UsersFactory, ngToast) {
 
     // 可取代Users為對應model名稱，例: Users --> Order
 

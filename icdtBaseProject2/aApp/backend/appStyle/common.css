@@ -1,63 +1,63 @@
-body{  
-    font-family: "微軟正黑體", "Microsoft JhengHei", "新細明體", "PMingLiU", "細明體", "MingLiU", "標楷體", "DFKai-sb", Comic Sans MS,arial,helvetica,sans-serif;
-    -webkit-transition: background-color 1000ms linear;
-    -moz-transition: background-color 1000ms linear;
-    -o-transition: background-color 1000ms linear;
-    -ms-transition: background-color 1000ms linear;
-    transition: background-color 1000ms linear;
+body {
+	font-family: "微軟正黑體", "Microsoft JhengHei", "新細明體", "PMingLiU", "細明體", "MingLiU", "標楷體", "DFKai-sb", Comic Sans MS,arial,helvetica,sans-serif;
+	-webkit-transition: background-color 1000ms linear;
+	-moz-transition: background-color 1000ms linear;
+	-o-transition: background-color 1000ms linear;
+	-ms-transition: background-color 1000ms linear;
+	transition: background-color 1000ms linear;
 }
 
 
 .sidebar-nav ul {
-    padding: 0;
-    list-style: none;
+	padding: 0;
+	list-style: none;
 }
 
-    .sidebar-nav ul ul li {
-        padding-left: 20px;
-        list-style: none;
-    }
+	.sidebar-nav ul ul li {
+		padding-left: 20px;
+		list-style: none;
+	}
 
 .sublist_toggle {
-    margin-left: 30px;
+	margin-left: 30px;
 }
 
 .anchor_pointer {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .navbar-brand {
-    padding: 0px;
+	padding: 0px;
 }
 
 .navbar {
-    margin-bottom: 0px;
+	margin-bottom: 0px;
 }
 
 .menu_toggle {
-    float: left;
+	float: left;
 }
 
 .block_inline {
-    display: inline-block;
+	display: inline-block;
 }
 
 .menu_active {
-    text-decoration: none;
-    color: rgb(255, 255, 255) !important;
-    background: rgba(255, 255, 255, 0.2) !important;
+	text-decoration: none;
+	color: rgb(255, 255, 255) !important;
+	background: rgba(255, 255, 255, 0.2) !important;
 }
 
 .uiGrid {
-    width: 100%;
+	width: 100%;
 }
 
 .form-group .help-block {
-  display: none;
+	display: none;
 }
- 
+
 .form-group.has-error .help-block {
-  display: block;
+	display: block;
 }
 
 /*.toast_text_left {
@@ -65,5 +65,275 @@ body{
 }*/
 
 .ng-toast__message {
-    text-align: left !important;
+	text-align: left !important;
+}
+
+/*管理列表區塊標題*/
+.manage_title {
+	width: 100%;
+	text-align: right;
+	font-size: 18px;
+	padding: 5px 10px 10px 0;
+}
+
+	.manage_title .badge {
+		font-size: 18px;
+		padding: 5px 10px;
+	}
+
+/*Form按鈕區塊*/
+.edit_btn {
+	position: absolute;
+	right: 20px;
+	bottom: 0;
+}
+
+	.edit_btn .edit_count {
+		font-size: 18px;
+	}
+
+	.edit_btn .badge {
+		font-size: 18px;
+		padding: 5px 10px;
+	}
+
+/*首頁*/
+.inner > h3 {
+	font-size: 24px !important;
+}
+
+/*產品型錄*/
+.main_category, .sub_category {
+	/*height: 450px !important;*/
+	overflow-y: auto;
+	border: 1px solid #EFEFEF;
+	padding: 0;
+}
+
+	.main_category > .col-sm-11 {
+		line-height: 40px;
+		border: 1px solid #EFEFEF;
+		margin: 10px 5px;
+		cursor: pointer;
+	}
+
+		.main_category > .col-sm-11:hover {
+			background-color: #EFEFEF;
+		}
+
+	.main_category .active {
+		background-color: #EFEFEF;
+	}
+
+	.sub_category > .col-sm-11 {
+		line-height: 40px;
+		border: 1px solid #EFEFEF;
+		margin: 10px 5px;
+		cursor: pointer;
+	}
+
+		.sub_category > .col-sm-11:hover {
+			background-color: #EFEFEF;
+		}
+
+	.sub_category > .col-sm-5 {
+		line-height: 40px;
+		border: 1px solid #EFEFEF;
+		margin: 10px 8px;
+		cursor: pointer;
+	}
+
+		.sub_category > .col-sm-5:hover {
+			background-color: #EFEFEF;
+		}
+
+.product_img {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+.product_edit_img {
+	position: relative;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 120px;
+	height: 120px;
+	margin: 0 auto;
+}
+
+	.product_edit_img.edit {
+		border: 1px solid #EFEFEF;
+	}
+
+.upload {
+	position: relative;
+	opacity: 0;
+	width: 120px;
+	height: 120px;
+	z-index: 999;
+	cursor: pointer;
+}
+
+.upload_btn {
+	background-color: rgba(0, 0, 0, 0.50);
+	position: absolute;
+	bottom: 0;
+	width: 120px;
+	line-height: 24px;
+	text-align: left;
+	color: #fff;
+	padding-left: 10px;
+}
+
+/*表格管理*/
+table {
+	table-layout: fixed;
+}
+
+	table .view_img {
+		text-align: center !important;
+		vertical-align: middle !important;
+		width: 130px;
+	}
+
+	table .view_title {
+		text-align: right;
+		width: 90px;
+		vertical-align: middle !important;
+		padding-right: 5px;
+		background-color: #EFEFEF;
+	}
+
+	table .view_title2 {
+		text-align: right;
+		width: 50px;
+		vertical-align: middle !important;
+		padding-right: 5px;
+		background-color: #EFEFEF;
+	}
+
+	table .view_content1 {
+		text-align: left;
+		vertical-align: middle !important;
+		width: 22%;
+	}
+
+	table .view_content2 {
+		text-align: left;
+		vertical-align: middle !important;
+		width: 13%;
+	}
+
+	table .view_content3 {
+		text-align: left;
+		vertical-align: middle !important;
+		width: 22%;
+	}
+
+	table .view_content4 {
+		text-align: left;
+		vertical-align: middle !important;
+		width: 30%;
+	}
+
+	table .view_edit {
+		text-align: center;
+		vertical-align: middle !important;
+		width: 10%;
+	}
+
+	table .view_order_edit {
+		text-align: center;
+		vertical-align: middle !important;
+		width: 30%;
+	}
+
+	table .view_count {
+		text-align: left;
+		vertical-align: middle !important;
+		width: 8%;
+	}
+
+	table .view_detail {
+		padding: 5px;
+		vertical-align: top !important;
+	}
+
+	table .view_ckeditor {
+		vertical-align: middle !important;
+	}
+
+	table input[type=text].k-textbox {
+		width: 90% !important;
+	}
+
+    table input[type=checkbox] {
+		width: 20px !important;
+        height: 20px !important;
+	}
+
+	table.customer input[type=text].k-textbox {
+		width: 80% !important;
+	}
+
+	table input[type=text].k-textbox.name {
+		width: 80% !important;
+	}
+
+	table input[type=text].k-textbox.count {
+		width: 40% !important;
+	}
+
+	table .margin {
+		width: 150px !important;
+		height: auto !important;
+	}
+
+input[type=text].k-textbox.search {
+	width: 50% !important;
+}
+
+.k-datepicker-calendar, .k-number {
+	font-size: 14px !important;
+}
+
+/*讀取畫面*/
+.loading {
+	background-color: rgba(0, 0, 0, 0.50);
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 9999;
+	text-align: center;
+	color: #eee;
+	font-size: 24px;
+	font-weight: 700;
+	display: none;
+}
+
+	.loading img {
+		width: 55px;
+		margin: 20% auto 10px auto;
+	}
+
+/*驗證錯誤*/
+.error {
+	color: red;
+	font-size: 14px;
+	display: block;
+	width: 100%;
+}
+
+/*編輯器調整*/
+.cke_dialog .ImagePreviewBox {
+	width: auto !important;
 }

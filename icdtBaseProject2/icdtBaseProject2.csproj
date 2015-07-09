@@ -268,6 +268,8 @@
     <Compile Include="Models\Account\AccountBindingModels.cs" />
     <Compile Include="Models\Account\AccountViewModels.cs" />
     <Compile Include="Models\BaseField\Entity.cs" />
+    <Compile Include="Models\icdtdata\icdtdata.cs" />
+    <Compile Include="Models\icdtdata\icdtdataDTO.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Tags\TagItem.cs" />
     <Compile Include="Models\UserProfile.cs" />
@@ -283,6 +285,12 @@
     <Content Include="aApp\backend\app.js" />
     <Content Include="aApp\backend\appData\CRUD\icdtdataFactory.js" />
     <Content Include="aApp\backend\appData\user\UsersFactory.js" />
+    <Content Include="aApp\backend\appPages\alogin\index.html" />
+    <Content Include="aApp\backend\appPages\alogin\loginCtrl.js" />
+    <Content Include="aApp\backend\appPages\aRegister\index.html" />
+    <Content Include="aApp\backend\appPages\aRegister\registerCtrl.js" />
+    <Content Include="aApp\backend\appPages\aUserChangePassword\index.html" />
+    <Content Include="aApp\backend\appPages\aUserChangePassword\userChangePasswordCtrl.js" />
     <Content Include="aApp\backend\appPages\mCSV\create.js" />
     <Content Include="aApp\backend\appPages\mCSV\edit.js" />
     <Content Include="aApp\backend\appPages\mCSV\form.html" />
@@ -295,10 +303,12 @@
     <Content Include="aApp\backend\appPages\mUsers\list.html" />
     <Content Include="aApp\backend\appPages\mUsers\list.js" />
     <Content Include="aApp\backend\appPages\mUsers\state.js" />
+    <Content Include="aApp\backend\appUtils\datetime\datetimeService.js" />
     <Content Include="aApp\backend\appUtils\file\fileUtils.js" />
     <Content Include="aApp\backend\appData\permissions\PermissionsFactory.js" />
-    <Content Include="aApp\backend\appData\options\optionsFactory.js" />
+    <Content Include="aApp\backend\appUtils\options\optionsFactory.js" />
     <Content Include="aApp\backend\appData\order\icdtdataFactory.js" />
+    <Content Include="aApp\backend\appUtils\global\globalService.js" />
     <Content Include="aApp\backend\appUtils\settings\settingFactory.js" />
     <Content Include="aApp\backend\appLib\datepicker\datepicker-zh-TW.js" />
     <Content Include="aApp\backend\appLib\ngToast\ngToast-animations.css" />
@@ -322,8 +332,6 @@
     <Content Include="aApp\backend\appLib\ocLazyLoad\ocLazyLoad.require.min.js" />
     <Content Include="aApp\backend\appLib\uiGrid\ui-grid.css" />
     <Content Include="aApp\backend\appLib\uiGrid\ui-grid.js" />
-    <Content Include="aApp\backend\appPages\login\index.html" />
-    <Content Include="aApp\backend\appPages\login\loginCtrl.js" />
     <Content Include="aApp\backend\appPages\mGroups\create.js" />
     <Content Include="aApp\backend\appPages\mGroups\edit.js" />
     <Content Include="aApp\backend\appPages\mGroups\form.html" />
