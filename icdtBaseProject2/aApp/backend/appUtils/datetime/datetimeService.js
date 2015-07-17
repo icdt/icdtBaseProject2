@@ -47,6 +47,48 @@
         return aa;
     };
 
+    var _compareDate = function (date1, date2) {
+
+        date1 = new Date(date1);
+        date2 = new Date(date2);
+
+        var y1 = date1.getFullYear();
+        var m1 = (1 + date1.getMonth()).toString();
+        var d1 = date1.getDate().toString();
+
+        var y2 = date2.getFullYear();
+        var m2 = (1 + date2.getMonth()).toString();
+        var d2 = date2.getDate().toString();
+        
+        if (y1 == y2 && m1 == m2 && d1 == d2) {
+            return true;
+        } else {
+            return false;
+        }
+
+    };
+
+    var _compareTime = function (time1, time2) {
+
+        var time1_hour = time1.split(':')[0];
+        var time1_min = time1.split(':')[1];
+        var time2_hour = time2.split(':')[0];
+        var time2_min = time2.split(':')[1];
+
+        if (time2_hour > time1_hour) {
+            return true;
+        }else{
+            return false;
+        }
+
+        if (time2_min > time1_min) {
+            return true;
+        } else {
+            return false;
+        }
+
+    };
+
 
 
     return {
@@ -56,6 +98,8 @@
         formatDate: _formatDate,
         formatTime: _formatTime,
         startTime: _createSearchStart,
-        endTime: _createSearchEnd
+        endTime: _createSearchEnd,
+        compareDate: _compareDate,
+        compareTime: _compareTime,
     };
 }]);

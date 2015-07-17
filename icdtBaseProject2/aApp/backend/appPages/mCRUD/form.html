@@ -8,7 +8,7 @@
         <small></small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 列表 </a></li>
+        <li><a href="javascript:"><i class="fa fa-dashboard"></i> 列表 </a></li>
         <li class="active">明細</li>
     </ol>
 </section>
@@ -25,8 +25,8 @@
                     <div class="row" style="width:100%;text-align:right">
                         <div class="col-md-12">
                             <div class="form-group block_inline">
-                                <button type="submit" class="btn btn-success btn-flat block_inline" ng-click="vm.save()">儲存</button>&nbsp;&nbsp;
-                                <button type="submit" class="btn btn-danger btn-flat block_inline" ng-if="vm.isEdit" ng-click="vm.delete()">刪除</button>
+                                <button type="submit" class="btn btn-success btn-flat block_inline" ng-click="viewAction.save()">儲存</button>&nbsp;&nbsp;
+                                <button type="submit" class="btn btn-danger btn-flat block_inline" ng-if="vm.isEdit" ng-click="viewAction.remove()">刪除</button>
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                                     <tr class="view_tr">
                                         <td class="view_title"><span class="spanKeyin">*</span>姓名</td>
                                         <td class="view_content">
-                                            <input type="text" class="k-textbox" ng-model="vm.name" name="name" required />
+                                            <input type="text" ng-model="vm.singleObj.Name" class="k-textbox" name="name" required />
                                             <br />
                                             <div class="error"
                                                  ng-show="signup_form.name.$invalid && signup_form.submitted">
@@ -56,8 +56,18 @@
                                                 </small>
                                             </div>
                                         </td>
-                                        <td class="view_title">訂單編號</td>
-                                        <td class="view_content"><input type="text" ng-model="vm.orderId" class="k-textbox" /></td>
+                                        <td class="view_title">自動完成</td>
+                                        <td class="view_content">
+                                            <autocomplete name="autocomplete" ng-model="vm.singleObj.AutoComplete" class="k-textbox"  attr-placeholder="自動完成" click-activation="true" data="autoComplete.allOptions" on-type="autoComplete.onType" on-select="autoComplete.onSelect" required></autocomplete>
+                                            <br />
+                                            <div class="error"
+                                                 ng-show="signup_form.autocomplete.$invalid && signup_form.submitted">
+                                                <small class="error"
+                                                       ng-show="signup_form.autocomplete.$error.required">
+                                                    必填欄位!!
+                                                </small>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr class="view_tr">
                                         <td class="table_br" colspan="4"></td>
@@ -65,7 +75,7 @@
                                     <tr class="view_tr">
                                         <td class="view_title"><span class="spanKeyin">*</span>電話(手機)</td>
                                         <td class="view_content">
-                                            <input type="text" ng-model="vm.tel" name="tel" class="k-textbox" ng-minlength=7 ng-maxlength=10 ng-pattern="/^[0-9]+$/" required />
+                                            <input type="text" ng-model="vm.singleObj.Phone" name="tel" class="k-textbox" ng-minlength=7 ng-maxlength=10 ng-pattern="/^[0-9]+$/" required />
                                             <br />
                                             <div class="error"
                                                  ng-show="signup_form.tel.$dirty && signup_form.tel.$invalid">
@@ -87,15 +97,15 @@
                                                 </small>
                                             </div>
                                         </td>
-                                        <td class="view_title"><span class="spanKeyin">*</span>產品名稱</td>
+                                        <td class="view_title">下拉選單</td>
                                         <td class="view_content">
-                                            <input type="text" ng-model="vm.productName" name="productName" class="k-textbox" required />
+                                            <select ng-model="vm.singleObj.Select" name="category" kendo-drop-down-list k-options="select.allOptions" required></select>
                                             <br />
                                             <div class="error"
-                                                 ng-show="signup_form.productName.$dirty && signup_form.productName.$invalid && signup_form.submitted">
+                                                 ng-show="signup_form.category.$invalid && signup_form.submitted">
                                                 <small class="error"
-                                                       ng-show="signup_form.productName.$error.required">
-                                                    產品名稱為必填欄位!!
+                                                       ng-show="signup_form.category.$error.required">
+                                                    請選擇選項!!
                                                 </small>
                                             </div>
                                         </td>
@@ -105,18 +115,12 @@
                                     </tr>
                                     <tr class="view_tr">
                                         <td class="view_title">地址</td>
-                                        <td class="view_content"><input type="text" ng-model="vm.address" name="address" class="k-textbox" /></td>
-                                        <td class="view_title">產品類別</td>
                                         <td class="view_content">
-                                            <select ng-model="vm.category" name="category" kendo-drop-down-list k-options="product_category" required></select>
-                                            <br />
-                                            <div class="error"
-                                                 ng-show="signup_form.category.$invalid && signup_form.submitted">
-                                                <small class="error"
-                                                       ng-show="signup_form.category.$error.required">
-                                                    請選擇產品類別!!
-                                                </small>
-                                            </div>
+                                            <input type="text" ng-model="vm.singleObj.Address" name="address" class="k-textbox" />
+                                        </td>
+                                        <td class="view_title">Checkbox</td>
+                                        <td class="view_content">
+                                            <input type="checkbox" class="k-checkbox" ng-model="vm.singleObj.IsChecked"/>
                                         </td>
                                     </tr>
                                     <tr class="view_tr">
@@ -125,7 +129,7 @@
                                     <tr class="view_tr">
                                         <td class="view_title"><span class="spanKeyin">*</span>E-mail</td>
                                         <td class="view_content">
-                                            <input type="email" ng-model="vm.email" name="email" class="k-textbox" required />
+                                            <input type="email" ng-model="vm.singleObj.Email" name="email" class="k-textbox" required  />
                                             <br />
                                             <div class="error"
                                                  ng-show="signup_form.email.$invalid && signup_form.submitted">
@@ -140,7 +144,9 @@
                                             </div>
                                         </td>
                                         <td class="view_title">產品價格</td>
-                                        <td class="view_content"><input type="text" ng-model="vm.price" class="k-number" id="price_change" /></td>
+                                        <td class="view_content">
+                                            <input type="text" ng-model="vm.singleObj.Number" class="k-textbox" onkeyup="return ValidateNumber($(this),value)" placeholder="只能輸入數字"  />
+                                        </td>
                                     </tr>
                                     <tr class="view_tr">
                                         <td class="table_br" colspan="4"></td>
@@ -151,13 +157,31 @@
                                         </td>
                                     </tr>
                                     <tr class="view_tr">
-                                        <td class="view_title">起訖時間</td>
+                                        <td class="view_title">起訖日期</td>
                                         <td class="view_content" colspan="3">
-                                            <input kendo-date-picker k-ng-model="k_StartTime" ng-model="vm.theNews.StartTime" k-format="'yyyy/MM/dd'" class="k-datepicker-calendar" id="Start_Date" onkeydown="return false;" ng-change="vm.compareStartEnd()" />
+                                            <input kendo-date-picker k-ng-model="k_StartDate" ng-model="vm.singleObj.StartDate" k-format="'yyyy/MM/dd'" class="k-datepicker-calendar" onkeydown="return false;" ng-change="dateTime.compareStartEndDate()" />
                                             ~
-                                            <input kendo-date-picker k-ng-model="k_EndTime" ng-model="vm.theNews.EndTime" k-format="'yyyy/MM/dd'" class="k-datepicker-calendar" id="End_Date" onkeydown="return false;" ng-change="vm.compareStartEnd()" />
+                                            <input kendo-date-picker k-ng-model="k_EndDate" ng-model="vm.singleObj.EndDate" k-format="'yyyy/MM/dd'" class="k-datepicker-calendar" onkeydown="return false;" ng-change="dateTime.compareStartEndDate()" />
                                             <div class="error"
-                                                 ng-show="signup_form.isStartBigggerThanEndError">
+                                                 ng-show="signup_form.isDateError">
+                                                <small class="error"
+                                                       ng-show="true">
+                                                    結束日期需大於起始日期
+                                                </small>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="view_tr">
+                                        <td class="table_br" colspan="4"></td>
+                                    </tr>
+                                    <tr class="view_tr">
+                                        <td class="view_title">起迄時間</td>
+                                        <td class="view_content" colspan="3">
+                                            <input class="k-timepicker" kendo-time-picker k-ng-model="k_StartTime" ng-model="vm.singleObj.StartTime" k-format="'HH:mm'" onkeydown="return false;" ng-change="dateTime.compareStartEndTime()"/>
+                                            ~
+                                            <input class="k-timepicker" kendo-time-picker k-ng-model="k_EndTime" ng-model="vm.singleObj.EndTime" k-format="'HH:mm'" onkeydown="return false;" ng-change="dateTime.compareStartEndTime()"/>
+                                            <div class="error"
+                                                 ng-show="signup_form.isTimeError">
                                                 <small class="error"
                                                        ng-show="true">
                                                     結束時間需大於起始時間
@@ -169,30 +193,43 @@
                                         <td class="table_br" colspan="4"></td>
                                     </tr>
                                     <tr class="view_tr">
-                                        <td class="view_title">顯示時間</td>
-                                        <td class="view_content"><input class="k-timepicker" kendo-time-picker k-ng-model="vm.time" k-format="'HH:mm'" /></td>
-                                        <td class="view_title">產品顯示前台</td>
-                                        <td class="view_content"><input type="checkbox" class="k-checkbox" /></td>
-                                    </tr>
-                                    <tr class="view_tr">
-                                        <td class="table_br" colspan="4"></td>
-                                    </tr>
-                                    <tr class="view_tr">
-                                        <td class="view_title">選擇倉儲</td>
+                                        <td class="view_title">Radio Btn (單選)</td>
                                         <td class="view_content" colspan="3">
-                                            <input type="radio" class="k-radio" name="group" />GA
-                                            <input type="radio" class="k-radio" name="group" />GS
-                                            <input type="radio" class="k-radio" name="group" />GV
-                                            <input type="radio" class="k-radio" name="group" />GM
+                                            <label class="radio-inline" ng-repeat="item in radio.allOptions">
+                                                <input type="radio" ng-model="$parent.vm.singleObj.Radio" class="k-radio" value="{{item.value}}" > {{item.text}}
+                                            </label>
                                         </td>
                                     </tr>
                                     <tr class="view_tr">
                                         <td class="table_br" colspan="4"></td>
                                     </tr>
                                     <tr class="view_tr">
-                                        <td class="view_title">自動完成</td>
+                                        <td class="view_title">Checklist (多選)</td>
                                         <td class="view_content" colspan="3">
-                                            <input type="text" class="k-textbox" id="autocomplete" />
+                                            <label class="checkbox-inline" ng-repeat="item in checklist.allOptions">
+                                                <input type="checkbox" checklist-model="vm.singleObj.Checklist" checklist-value="item" />{{item.text}}
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr class="view_tr">
+                                        <td class="table_br" colspan="4"></td>
+                                    </tr>
+                                    <tr class="view_tr">
+                                        <td class="view_title">單張圖片上傳</td>
+                                        <td class="view_content" colspan="3">
+                                            <div class="product_edit_img edit" style="background-image: url({{vm.singleObj.PHOTO_BASE64}})">
+                                                <input type="file" class="upload" file-model="vm.singleObj.PHOTO_FILE" onchange="angular.element(this).scope().handleFileImg()" />
+                                                <div class="upload_btn"><i class="fa fa-camera"></i>&nbsp;上傳圖片</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="view_tr">
+                                        <td class="table_br" colspan="4"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="view_title">CKeditor</td>
+                                        <td colspan="3" class="view_ckeditor">
+                                            <textarea name="editor" style="width: 98%; height: 250px; margin: 0 auto;"></textarea>
                                         </td>
                                     </tr>
                                     <tr class="view_tr">
@@ -222,75 +259,6 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr class="view_tr">
-                                        <td class="table_br" colspan="4"></td>
-                                    </tr>
-                                    <tr class="view_tr">
-                                        <td class="view_title">單張圖片上傳</td>
-                                        <td class="view_content" colspan="3">
-                                            <input type="file" name="file" id="file" />
-                                            <br />
-                                            <img src="img/Ethan-176.jpg" width="200" />
-                                            <div class="upload_one">
-                                                <button class="k-button">刪除</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="view_tr">
-                                        <td class="table_br" colspan="4"></td>
-                                    </tr>
-                                    <tr class="view_tr">
-                                        <td class="view_title">多張圖片上傳</td>
-                                        <td class="view_content" colspan="3">
-                                            <input type="file" name="files" id="files" />
-                                            <br />
-                                            <div class="upload_more">
-                                                <div class="upload_more_img" style="background-image: url(img/Ethan-176.jpg)"></div>
-                                                <button class="k-button">刪除</button>
-                                            </div>
-                                            <div class="upload_more">
-                                                <div class="upload_more_img" style="background-image: url(img/images111.jpg)"></div>
-                                                <button class="k-button">刪除</button>
-                                            </div>
-                                            <div class="upload_more">
-                                                <div class="upload_more_img" style="background-image: url(img/kv5.jpg)"></div>
-                                                <button class="k-button">刪除</button>
-                                            </div>
-                                            <div class="upload_more">
-                                                <div class="upload_more_img" style="background-image: url(img/Ethan-176.jpg)"></div>
-                                                <button class="k-button">刪除</button>
-                                            </div>
-                                            <div class="upload_more">
-                                                <div class="upload_more_img" style="background-image: url(img/images111.jpg)"></div>
-                                                <button class="k-button">刪除</button>
-                                            </div>
-                                            <div class="upload_more">
-                                                <div class="upload_more_img" style="background-image: url(img/kv5.jpg)"></div>
-                                                <button class="k-button">刪除</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="view_tr">
-                                        <td class="table_br" colspan="4"></td>
-                                    </tr>
-                                    <tr class="view_tr">
-                                        <td class="view_title">備註</td>
-                                        <td class="view_content" colspan="3">
-                                            <textarea id="note"></textarea>
-                                        </td>
-                                    </tr>
-                                    <tr class="view_tr">
-                                        <td class="table_br" colspan="4"></td>
-                                    </tr>
-                                    <tr class="view_tr">
-                                        <td class="view_title">新增人員日期</td>
-                                        <td class="view_content">admin&nbsp;&nbsp;2015/06/18</td>
-                                        <td class="view_title">修改人員日期</td>
-                                        <td class="view_content">admin&nbsp;&nbsp;2015/06/20</td>
-                                    </tr>
-                                    <tr class="view_tr">
-                                        <td class="table_br" colspan="4"></td>
-                                    </tr>
                                 </table>
                             </form>
                         </div>
@@ -304,23 +272,9 @@
 
 
 </section><!-- /.content -->
-<!--<script>
-  (function() {
-      $(".jdatepicker").datepicker();
-      $.datepicker.setDefaults($.datepicker.regional["zh-TW"]);
-  })();
-</script>-->
 
 <script>
-    (function () {
-        //if (!Modernizr.touch || !Modernizr.inputtypes.date) {
-        //    $('input[type=date]')
-        //        .attr('type', 'text')
-        //        .datepicker({
-        //            // Consistent format with the HTML5 picker
-        //            dateFormat: 'yy/mm/dd'
-        //        });
-        //    $.datepicker.setDefaults($.datepicker.regional["zh-TW"]);
-        //}
-    })();
+        var username = "userName";
+        var folder = "ckeditor";
+        var editor = CKEDITOR.replace('editor', { filebrowserImageUploadUrl: '/mvc/files?userName=' + username + '&folder=' + folder });
 </script>

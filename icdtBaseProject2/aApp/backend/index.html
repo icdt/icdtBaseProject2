@@ -31,8 +31,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link href="appLib/uiGrid/ui-grid.css" rel="stylesheet" />
     <link href="appLib/ngToast/ngToast.min.css" rel="stylesheet" />
     <link href="appLib/ngToast/ngToast-animations.min.css" rel="stylesheet" />
+    <link href="appLib/autocomplete/autocomplete.css" rel="stylesheet" />
+
     <!-- iCheck -->
     <link href="plugins/iCheck/square/blue.css" rel="stylesheet" type="text/css" />
+    <!--kendo CSS-->
+    <link href="appLib/kendo/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="appLib/kendo/styles/kendo.default.min.css" rel="stylesheet" />
+    <link href="appLib/kendo/styles/kendo.dataviz.min.css" rel="stylesheet" />
+    <link href="appLib/kendo/styles/kendo.dataviz.default.min.css" rel="stylesheet" />
 
     <!--myStyle-->
     <link href="appStyle/common.css" rel="stylesheet" />
@@ -88,10 +95,12 @@ desired effect
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.js"></script>
     <script src="appLib/ocLazyLoad/ocLazyLoad.min.js"></script>
     <script src="appLib/ngToast/ngToast.min.js"></script>
-    <script src="/aCollection/lib/checkListModel/checklist-model.js"></script>
+    <script src="appLib/checkListModel/checklist-model.js"></script>
 
     <!--pluginLib-->
     <script src="appLib/uiGrid/ui-grid.js"></script>
+    <script src="appLib/autocomplete/autocomplete.js"></script>
+
     <!-- iCheck -->
     <script src="plugins/iCheck/icheck.min.js" type="text/javascript"></script>
     <script>
@@ -104,6 +113,14 @@ desired effect
       };
     </script>
 
+    <!-- CK Editor -->
+    <script src="appLib/ckeditor/ckeditor.js"></script>
+
+    <!--kendo JS-->
+    <script src="appLib/kendo/kendo.web.min.js"></script>
+    <script src="appLib/kendo/angular-kendo.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/kendo-ui-core/2014.1.416/js/cultures/kendo.culture.zh-CHT.min.js"></script>
+
     <!--myApp-->
     <script src="app.js"></script>
     <!--state-->
@@ -114,6 +131,7 @@ desired effect
     <script src="appPages/mCSV/state.js"></script>
 
     <!--common modules-->
+    <script src="appData/CRUD/icdtdataFactory.js"></script>
     <script src="appUtils/UrlService.js"></script>
     <script src="appUtils/settings/settingFactory.js"></script>
     <script src="appUtils/UserService.js"></script>
@@ -124,7 +142,6 @@ desired effect
     <script src="appUtils/global/globalService.js"></script>
     <script src="appUtils/file/fileUtils.js"></script>
     <script src="appUtils/options/optionsFactory.js"></script>
-
 
 
     <!-- AdminLTE App -->

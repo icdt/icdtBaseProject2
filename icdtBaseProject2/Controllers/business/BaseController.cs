@@ -44,7 +44,7 @@ namespace icdtBaseProject2.Controllers.api
         {
             get
             {
-                _groupManager = _groupManager ?? new ApplicationGroupManager(DB, UserManager, RoleManager);
+                _groupManager = _groupManager ?? new ApplicationGroupManager(db, UserManager, RoleManager);
                 return _groupManager;
             }
             private set
@@ -53,7 +53,7 @@ namespace icdtBaseProject2.Controllers.api
             }
         }
 
-        public ApplicationDbContext DB
+        public ApplicationDbContext db
         {
             get
             {
@@ -199,7 +199,7 @@ namespace icdtBaseProject2.Controllers.api
             if (disposing)
             {                
                 UserManager.Dispose();
-                DB.Dispose();
+                db.Dispose();
             }
 
             base.Dispose(disposing);

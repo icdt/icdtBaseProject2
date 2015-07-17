@@ -17,14 +17,14 @@ namespace icdtBaseProject2.Controllers.api
         // GET: api/Orders
         public IQueryable<Order> GetOrders()
         {
-            return DB.Orders;
+            return db.Orders;
         }
 
         // GET: api/Orders/5
         [ResponseType(typeof(Order))]
         public IHttpActionResult GetOrder(Guid id)
         {
-            Order order = DB.Orders.Find(id);
+            Order order = db.Orders.Find(id);
             if (order == null)
             {
                 return NotFound();
@@ -47,11 +47,11 @@ namespace icdtBaseProject2.Controllers.api
                 return BadRequest();
             }
 
-            DB.Entry(order).State = EntityState.Modified;
+            db.Entry(order).State = EntityState.Modified;
 
             try
             {
-                DB.SaveChanges();
+                db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -77,11 +77,11 @@ namespace icdtBaseProject2.Controllers.api
                 return BadRequest(ModelState);
             }
 
-            DB.Orders.Add(order);
+            db.Orders.Add(order);
 
             try
             {
-                DB.SaveChanges();
+                db.SaveChanges();
             }
             catch (DbUpdateException)
             {
@@ -102,14 +102,14 @@ namespace icdtBaseProject2.Controllers.api
         [ResponseType(typeof(Order))]
         public IHttpActionResult DeleteOrder(Guid id)
         {
-            Order order = DB.Orders.Find(id);
+            Order order = db.Orders.Find(id);
             if (order == null)
             {
                 return NotFound();
             }
 
-            DB.Orders.Remove(order);
-            DB.SaveChanges();
+            db.Orders.Remove(order);
+            db.SaveChanges();
 
             return Ok(order);
         }
@@ -118,14 +118,14 @@ namespace icdtBaseProject2.Controllers.api
         {
             if (disposing)
             {
-                DB.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool OrderExists(Guid id)
         {
-            return DB.Orders.Count(e => e.id == id) > 0;
+            return db.Orders.Count(e => e.id == id) > 0;
         }
     }
 }

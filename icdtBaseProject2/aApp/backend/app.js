@@ -8,6 +8,8 @@
     'icdt.settings',
     'utility',
     'checklist-model',
+    'kendo.directives',
+    'autocomplete',
 
     //state
     'icdt.states.m',
@@ -86,7 +88,7 @@ function ($stateProvider, $urlRouterProvider, $httpProvider, ngToastProvider) {
     $stateProvider
     .state('login', {
         url: '/',
-        templateUrl: 'appPages/login/index.html',
+        templateUrl: 'appPages/alogin/index.html',
         controller: 'LoginCtrl',
         resolve: {
             bodyClass: ['$rootScope', function ($rootScope) {

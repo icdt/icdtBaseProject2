@@ -1,4 +1,4 @@
-﻿app.controller('LoginCtrl', ['$scope', '$rootScope', 'User', '$state', '$global',function ($scope, $rootScope, User, $state, $global) {
+﻿app.controller('LoginCtrl', ['$scope', '$rootScope', 'User', '$state', 'GlobalService', function ($scope, $rootScope, User, $state, GlobalService) {
 
     $scope.vm = {};
     $scope.vm.user = {};
@@ -20,15 +20,15 @@
             alert("請輸入帳號密碼");
             return;
         }
-        debugger;
+
         User.authenticate($scope.vm.user.UserName, $scope.vm.user.Password, onSuccess, onFail, $scope.vm.user.PersistData);
 
     };
 
     function onSuccess() {
         $rootScope.loginUser = User.getUserData();
-        $global.loginUser = User.getUserData();
-        $state.go('m.Home.index');
+        GlobalService.loginUser = User.getUserData();
+        $state.go('m.CRUD.list');
     }
 
     function onFail(err) {

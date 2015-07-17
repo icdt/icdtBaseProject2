@@ -21,6 +21,10 @@ namespace icdtBaseProject2.Infrastructure
         public DbSet<Order> Orders { set; get; }
         public DbSet<TagItem> TagItems{ get; set; }
 
+
+        // 測試資料
+        public DbSet<icdtdata> icdtdatas { get; set; }
+
         public virtual IDbSet<ApplicationGroup> ApplicationGroups { get; set; }
         #endregion
 

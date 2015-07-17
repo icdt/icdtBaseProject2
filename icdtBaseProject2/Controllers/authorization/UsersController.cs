@@ -26,7 +26,7 @@ namespace icdtBaseProject2.Controllers.authorization
         [Route("api/users/{id}")]
         public IHttpActionResult GetUser(string id)
         {
-            var user = DB.Users.Where(u => u.Id == id).FirstOrDefault();
+            var user = db.Users.Where(u => u.Id == id).FirstOrDefault();
             var userGroups = GroupManager.GetUserGroups(id);
             //List<UserGroupObj> userGroupList = new List<UserGroupObj>();
             List<string> userGroupList = new List<string>();
@@ -103,12 +103,12 @@ namespace icdtBaseProject2.Controllers.authorization
                 return BadRequest(ModelState);
             }
 
-            var user = DB.Users.Where(u => u.Id == userObj.Id).FirstOrDefault();
+            var user = db.Users.Where(u => u.Id == userObj.Id).FirstOrDefault();
 
             // update user info
             user.UserName = userObj.UserName;
             user.Email = userObj.Email;
-            DB.SaveChanges();
+            db.SaveChanges();
             
 
             //update user groups
