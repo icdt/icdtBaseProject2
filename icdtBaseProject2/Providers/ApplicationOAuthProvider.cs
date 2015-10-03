@@ -30,6 +30,10 @@ namespace icdtBaseProject2.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
+            //http://www.codeproject.com/Articles/742532/Using-Web-API-Individual-User-Account-plus-CORS-En#enablecors
+            // Allows cors for the /token endpoint this is different from webapi endpoints. 
+            context.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });  // <-- This is the line you need
+
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
             //var roleManager = context.OwinContext.GetUserManager<ApplicationRoleManager>();
 
